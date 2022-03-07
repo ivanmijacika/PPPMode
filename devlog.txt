@@ -8,3 +8,7 @@ different modes (obstacles, border wrapping, invincible)
 
 noakaiA, qinaL -- 2022-3-6 22:16
 finished up design doc; added roles and ideas, wrote frontend section, finished component map
+
+qinaL -- 2022-03-07 18:46
+- add heading to README.md 
+
