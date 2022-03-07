@@ -16,7 +16,7 @@ Come play Snake++, the classic snake game with innovative new modes, like obstac
 - Clone the Repository <br>
 ```$ git clone git@github.com:ivanmijacika/PPPMode.git``` <br><br>
 - Install Dependencies <br>
-```$ cd P01 ``` <br>
+```$ cd PPPMode ``` <br>
 ```$ pip install -r requirements.txt``` <br><br> 
 - Run the app <br>
 ```$ cd app```<br>
