@@ -1,0 +1,10 @@
+PPP Mode - Ivan, Justin, Qina, Noakai
+SoftDev
+P02 - Snake++ | Devlog
+
+ivanM, justinM, noakaiA, qinaL -- 2022-3-4 09:26
+Started making the design doc and came up with ideas on how to expand the simple snake game into a full project. We decided on difficulty levels (map sizes, speeds) and 
+different modes (obstacles, border wrapping, invincible)
+
+noakaiA, qinaL -- 2022-3-6 22:16
+finished up design doc; added roles and ideas, wrote frontend section, finished component map
