@@ -12,3 +12,5 @@ finished up design doc; added roles and ideas, wrote frontend section, finished 
 qinaL -- 2022-03-07 18:46
 - added heading to README.md 
 
+noakaiA, qinaL -- 2022-3-7 21:13
+Revised design doc based on in-class comments. There weren't too many, so it was just a sentance here or there
