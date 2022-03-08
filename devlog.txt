@@ -20,3 +20,6 @@ created working Flask app
 
 ivanM, qinaL, justinM -- 2022--3-8 9:21
 created requirements.txt
+
+noakaiA -- 2022--3-8 9:22
+created folders and files for later app ultility. Updated app to not include random unused functions
