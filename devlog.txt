@@ -14,3 +14,6 @@ qinaL -- 2022-03-07 18:46
 
 noakaiA, qinaL -- 2022-3-7 21:13
 Revised design doc based on in-class comments. There weren't too many, so it was just a sentance here or there
+
+justinM, qinaL -- 2022-3-8 9:15
+created working Flask app
