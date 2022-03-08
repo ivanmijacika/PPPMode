@@ -17,3 +17,6 @@ Revised design doc based on in-class comments. There weren't too many, so it was
 
 justinM, qinaL -- 2022-3-8 9:15
 created working Flask app
+
+ivanM, qinaL, justinM -- 2022--3-8 9:21
+created requirements.txt
