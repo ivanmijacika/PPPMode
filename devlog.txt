@@ -26,3 +26,6 @@ created folders and files for later app ultility. Updated app to not include ran
 
 ivanM -- 2022-3-9 9:10
 added team flag to repo
+
+justinM, qinaL -- 2022-3-9 9:14
+put stuff on home.html
