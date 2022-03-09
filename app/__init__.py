@@ -6,7 +6,7 @@ app.secret_key = os.urandom(32) #create random key
   
 @app.route('/')
 def home():
-    return("Hello, world!")
+    return render_template("home.html", user = "Robert")
     
   
 if __name__ == "__main__":
