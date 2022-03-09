@@ -18,8 +18,11 @@ Revised design doc based on in-class comments. There weren't too many, so it was
 justinM, qinaL -- 2022-3-8 9:15
 created working Flask app
 
-ivanM, qinaL, justinM -- 2022--3-8 9:21
+ivanM, qinaL, justinM -- 2022-3-8 9:21
 created requirements.txt
 
-noakaiA -- 2022--3-8 9:22
+noakaiA -- 2022-3-8 9:22
 created folders and files for later app ultility. Updated app to not include random unused functions
+
+ivanM -- 2022-3-9 9:10
+added team flag to repo
