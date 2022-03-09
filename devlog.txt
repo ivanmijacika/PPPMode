@@ -29,3 +29,9 @@ added team flag to repo
 
 justinM, qinaL -- 2022-3-9 9:14
 put stuff on home.html
+
+qinaL -- 2022-3-9 15:14
+- created base.html and turned all html files created into jinja inheritance format with base.html as parent
+- linked css and bootstrap 
+- some site-wide css- font and text-align center 
+
