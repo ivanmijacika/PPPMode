@@ -13,17 +13,17 @@
 <body class="text-center">
 
     <div class="container mt-5">
-        <h1 class="fw-light display-6" id="title">Login</h1>
+        <h2 class="fw-light" id="title">Login</h2>
     </div>
     <div class="container w-25">
         <form action="/auth" method="POST" class="">
-            <h5 class="fw-normal"> Enter your username and password</h5><br>
+            <h5 class="fw-light"> Enter your username and password</h5><br>
             <input class="rounded-pill form-control" type="text" name="username" placeholder="Username"><br>
             <input class="rounded-pill form-control" type="password" name="password" placeholder="Password"><br>
             <input class="btn btn-primary mb-3" type="submit" name="sub1" value="Login">
         </form>
     </div>
-    <h5 class="fw-normal" id=""> New user? <a href="{{ url_for('register') }}" class="link-info">Create an account.</a></h5>
+    <h5 class="fw-light" id=""> New user? <a href="{{ url_for('register') }}" class="link-info">Create an account.</a></h5>
     {% if input == "bad_user" %}
     <div class="container-fluid px-5">
         <div class="alert-danger alert text-center marginy py-2" role="alert">
@@ -45,7 +45,7 @@
     {% endif %}
 
     <form action="/" method='GET'>
-        <button style="display: block;margin-right: auto;margin-left: auto;" type="submit" class="btn btn-info"
+        <button style="" type="submit" class="btn btn-info"
                 formaction="/">Back Home
         </button>
     </form>
