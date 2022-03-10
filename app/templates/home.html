@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <!--PPP Mode: Ivan Mijacika, Qina Liu, Justin Morrill, Noakai Aronesty-->
 <!--SoftDev pd2-->
 <!--P02 -- Snake++-->
 
+<html>
 {% extends "base.html" %}
 {% block title %} This is snake yay!!? {% endblock %}
 
@@ -9,19 +11,43 @@
 {% endblock %}
 
 {% block body %}
-<h2>
-    {% if user %}
-    Welcome, {{user}}!
-    {% else %}
-    Welcome!
-    <a href = "/login">Login/register</a>
-    {% endif %}
-</h2>
-<br>
-<h1>
-    Snake++
+
+<body>
+    <div class="container"></div>
+    <div class="container pt-4 pb-3 rounded">
+        <div class="row row-cols-auto">
+            <div class="col p-0 my-auto">
+                <h1 class="fw-light display-4" id="title" style="display:inline-block; margin-right:5px">Snake++</h1> {%
+                if session['username'] %} <h5 class="fw-light" style="display:inline-block;">| current user:
+                    {{session['username']}}</h5> {% endif %}
+            </div>
+            <div class="col">
+                <div class="container my-2">
+                    <form action="/discover" method='GET'>
+                        <button type="submit" class="btn btn-success" formaction="/leaderboard">Leaderboard</button>
+                    </form>
+                </div>
+                <div class="container my-2">
+                    {% if session['username'] %}
+                    <form action="/logout" method='GET'>
+                        <button type="submit" class="btn btn-danger" formaction="/logout">Logout</button>
+                    </form>
+                    {% else %}
+                    <form action="/login" method='GET'>
+                        <button type="submit" class="btn btn-info" formaction="/login">Login</button>
+                    </form>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <br>
-    <br>
-    <button type="button" class="btn btn-primary btn-lg" href="/play">Play!</button>
-<h1>
+    <div class="conatainer">
+        <button type="button" class="btn btn-primary btn-lg" href="/play">Play!</button>
+    </div>
+</body>
 {% endblock %}
+
+</html>
