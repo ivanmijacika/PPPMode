@@ -18,8 +18,8 @@ def add_score(username, score):
         users.append(a_tuple[0])
     
     if username in users:
-    	c.execute("SELECT highscores FROM scores WHERE usernames = username")
-    	if score > c.fetchone():
+        c.execute("SELECT highscores FROM scores WHERE usernames = username")
+        if score > c.fetchone():
             c.execute("UPDATE scores SET highscores WHERE usernames = username")
     else:
     	c.execute("INSERT INTO scores VALUES (?, ?);")
