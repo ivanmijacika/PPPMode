@@ -23,7 +23,6 @@
             <input class="btn btn-primary mb-3" type="submit" name="sub1" value="Login">
         </form>
     </div>
-    <h5 class="fw-light" id=""> New user? <a href="{{ url_for('register') }}" class="link-info">Create an account.</a></h5>
     {% if input == "bad_user" %}
     <div class="container-fluid px-5">
         <div class="alert-danger alert text-center marginy py-2" role="alert">
@@ -43,10 +42,10 @@
         </div>
     </div>
     {% endif %}
-
+    <h5 class="fw-light" id=""> New user? <a href="{{ url_for('register') }}" class="link-info">Create an account.</a>
+    </h5>
     <form action="/" method='GET'>
-        <button style="" type="submit" class="btn btn-info"
-                formaction="/">Back Home
+        <button style="" type="submit" class="btn btn-info" formaction="/">Back Home
         </button>
     </form>
 
