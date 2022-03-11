@@ -35,3 +35,8 @@ qinaL -- 2022-3-9 15:14
 - linked css and bootstrap 
 - some site-wide css- font and text-align center 
 
+ivanM -- 2022-3-10 9:26
+- added to leaderboard.html
+
+ivanM -- 2022-3-11 9:28
+- added to settings.html
