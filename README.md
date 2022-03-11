@@ -19,7 +19,6 @@ Windows: $ ```git clone git@github.com:ivanmijacika/PPPMode.git``` <br><br>
 - Install Dependencies <br>
 (hamster)$ ```cd PPPMode ``` <br>
 (hamster)$ ```pip install -r requirements.txt``` <br><br> 
-- Download the `keys` directory. Make sure it is in the `app` directory <br><br> 
 - Run the app <br>
 (hamster)$ ```cd app``` <br>
 (hamster)$ ```python3 __init__.py``` <br><br>
