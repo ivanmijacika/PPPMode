@@ -2,9 +2,22 @@
 // SoftDev pd2
 // P02 -- Snake++
 
+// import * as LinkedList from LinkedList
+
 var c = document.getElementById('slate');
+let startbutton = document.getElementById('startbutton')
 
 var ctx = c.getContext("2d");
+let requestID;
+
+// var snake = new LinkedList()
+// snake.add(10)
+// console.log(snake)
+
+var changeX = 1;
+var changeY = 0;
+var posX = 250;
+var posY = 250;
 
 ctx.fillStyle = "#37C543";
 ctx.fillRect(0, 0, 1200, 600);
