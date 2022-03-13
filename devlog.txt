@@ -35,3 +35,17 @@ qinaL -- 2022-3-9 15:14
 - linked css and bootstrap 
 - some site-wide css- font and text-align center 
 
+ivanM -- 2022-3-10 9:26
+- added to leaderboard.html
+
+ivanM -- 2022-3-11 9:28
+- added to settings.html
+
+qinaL -- 2022-3-12 18:51
+- got get_score() and add_score() in db.py to work (at least with current testcases)
+    - test cases for these are in __init__.py commented out
+- added a button for settings in home page (doesn't look good, someone (prolly Noakai) will fix that)
+
+qinaL -- 2022-3-13 19:17
+- add_score() improvement- replaced the search loop for username in db with sqlite SELECT EXISTS statement
+- cleaned up some comments, db testcases from __init__.py to db.py

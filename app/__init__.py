@@ -110,7 +110,6 @@ def rAuthenticate():
                 else:
                     return render_template('register.html', taken=True)
 
-
 if __name__ == "__main__":
     app.debug = True
     app.run()

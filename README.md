@@ -11,15 +11,15 @@ Come play Snake++, the classic snake game with innovative new modes, like obstac
 
 ## Launch Codes
 - Install virtual environment <br>
-```$ python3 -m venv env``` <br>
-```$ source env/bin/activate``` <br><br>
+$ ```python3 -m venv ~/snakenv``` <br>
+Linux: $ ```source ~/snakenv/bin/activate``` <br>
+Windows: $ ```git clone git@github.com:ivanmijacika/PPPMode.git``` <br><br>
 - Clone the Repository <br>
-```$ git clone git@github.com:ivanmijacika/PPPMode.git``` <br><br>
+(hamster)$ ```git clone https://github.com/naronesty/P01.git ``` <br><br>
 - Install Dependencies <br>
-```$ cd PPPMode ``` <br>
-```$ pip install -r requirements.txt``` <br><br> 
+(snakenv)$ ```cd PPPMode ``` <br>
+(snakenv)$ ```pip install -r requirements.txt``` <br><br> 
 - Run the app <br>
-```$ cd app```<br>
-```$ python3 __init__.py``` <br><br>
+(snakenv)$ ```cd app``` <br>
+(snakenv)$ ```python3 __init__.py``` <br><br>
 - Open the website at http://127.0.0.1:5000/
-
