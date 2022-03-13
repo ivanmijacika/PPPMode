@@ -1,4 +1,4 @@
-# PPP Mode: Ivan Mijacika, Qina Liu, Justin Morrill, Noakai AronestyS
+# PPP Mode: Ivan Mijacika, Qina Liu, Justin Morrill, Noakai Aronesty
 # SoftDev pd2
 # P02 -- Snake++
 
@@ -12,13 +12,11 @@ def add_score(username, score, mode):
     
     db = sqlite3.connect(DB_file)
     c = db.cursor()
-    
-    c.execute("SELECT usernames FROM scores;")
-    users = []
-    for a_tuple in c.fetchall():
-        users.append(a_tuple[0])
 
-    if username in users:
+    c.execute("SELECT EXISTS(SELECT usernames FROM scores WHERE usernames = ?)", (username,))
+    rowExists = c.fetchone()[0]
+
+    if rowExists:
         dbScore = get_score(username, mode)
         if (dbScore is None) or (score > dbScore):
             # no prev score in this mode or new highscore achieved
@@ -31,17 +29,6 @@ def add_score(username, score, mode):
     '''
     db.commit()
     db.close()
-    '''
-    if username in users:
-        c.execute("SELECT (?) FROM scores WHERE usernames = (?);", (highscore_name, username))
-        if score > c.fetchone():
-            c.execute("UPDATE scores SET (?) = (?) WHERE usernames = (?);", (highscore_name, score, username))
-        db.commit()
-    else:
-    	c.execute("INSERT INTO scores VALUES (?, ?, ?, ?, ?, ?, ?, ?);", (username, 0, 0, 0, 0, 0, 0, 0))
-    	#c.execute("UPDATE scores SET (?) = (?) WHERE usernames = (?);", (highscore_name, score, username))
-    	#c.execute("UPDATE scores SET highscore_basic = 7652 WHERE usernames = Robert;")
-    '''
 
 def get_score(username, mode):
     '''Gets the players highscore for a certain mode'''
@@ -65,4 +52,15 @@ def get_db():
     print(c.fetchall())
 
     db.close()
-
+'''
+# for testing add_score and get_score, rm db before testing tho
+add_score("Rob", 10, "basic")
+print(get_score("Rob", "basic"))
+get_db()
+add_score("Jess", 1000, "jump") # diff username
+add_score("Rob", 5, "basic") # should not override 10
+get_db()
+add_score("Rob", 100, "basic") #override dbScore
+add_score("Rob", 100, "jump") #diff mode
+get_db()
+'''

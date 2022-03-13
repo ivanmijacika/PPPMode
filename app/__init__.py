@@ -110,18 +110,6 @@ def rAuthenticate():
                 else:
                     return render_template('register.html', taken=True)
 
-'''
-# for testing add_score, rm db before testing tho
-add_score("Rob", 10, "basic")
-print(get_score("Rob", "basic"))
-get_db()
-add_score("Jess", 1000, "jump") # diff username
-add_score("Rob", 5, "basic") # should not override 10
-get_db()
-add_score("Rob", 100, "basic") #override dbScore
-add_score("Rob", 100, "jump") #diff mode
-get_db()
-'''
 if __name__ == "__main__":
     app.debug = True
     app.run()
