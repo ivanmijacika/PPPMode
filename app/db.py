@@ -40,8 +40,21 @@ def get_score(username, mode):
     c.execute("SELECT {mode} FROM scores WHERE usernames = (?)".format(mode = highscore_name), (username,))
     return c.fetchone()[0]
     	
-def top_n(n):
+def top_n(n, mode):
     '''Gets the top n scores'''
+    
+    db = sqlite3.connect(DB_file)
+    c = db.cursor()
+    highscore_name = "highscore_" + mode
+    
+    c.execute("SELECT {mode} FROM scores ORDER BY {mode} DESC".format(mode = highscore_name))
+    
+    n_scores = []
+    for i in range(n):
+    	ith_score = c.fetchone()
+    	if ith_score:
+    	    n_scores.append(ith_score[0])
+    return n_scores
 
 # for testing & debugging purposes
 def get_db():
@@ -52,8 +65,9 @@ def get_db():
     print(c.fetchall())
 
     db.close()
-'''
-# for testing add_score and get_score, rm db before testing tho
+
+"""
+#or testing add_score and get_score, rm db before testing tho
 add_score("Rob", 10, "basic")
 print(get_score("Rob", "basic"))
 get_db()
@@ -63,4 +77,5 @@ get_db()
 add_score("Rob", 100, "basic") #override dbScore
 add_score("Rob", 100, "jump") #diff mode
 get_db()
-'''
+print(top_n(3, "jump"))
+"""
