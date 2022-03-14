@@ -39,22 +39,80 @@
         <h1 id="title" class="fw-light display-6">Change Your Settings</h1>
     </div>
 
-    <!--div class="container mt-4 width=500">
-        <ul class="list-group">
-            <li class="list-group-item">speed?</li>
-            <li class="list-group-item">map size?</li>
-            <li class="list-group-item">more settings</li>
-        </ul>
-    </div-->
+    <!--Game Speed-->
+    <div class="container mt-4 text-center">
+        <h4>Speed:</h4>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameSpeed" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">Slow</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameSpeed" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">Medium</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameSpeed" id="inlineRadio3" value="option3">
+            <label class="form-check-label" for="inlineRadio3">Fast</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameSpeed" id="inlineRadio3" value="option3">
+            <label class="form-check-label" for="inlineRadio3">Insane!</label>
+        </div>
+    </div>
 
-    <!--div class="container mt-4 text-center">
-      <select class="form-select" aria-label="Default select example">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-      </select>
-    </div-->
+    <!--Map Size-->
+    <div class="container mt-4 text-center">
+        <h4>Map Size:</h4>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="mapSize" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">Small</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="mapSize" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">Medium</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="mapSize" id="inlineRadio3" value="option3">
+            <label class="form-check-label" for="inlineRadio3">Large</label>
+        </div>
+    </div>
+
+    <!--Mode-->
+    <div class="container mt-4 text-center">
+        <h4>Mode:</h4>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameMode" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">Basic</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameMode" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">Obstacles</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameMode" id="inlineRadio3" value="option3">
+            <label class="form-check-label" for="inlineRadio3">Border Wrap</label>
+        </div>
+        <br> <!--newline so two rows-->
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameMode" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">Peace</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameMode" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">Poison Apple</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gameMode" id="inlineRadio3" value="option3">
+            <label class="form-check-label" for="inlineRadio3">Boss</label>
+        </div>
+    </div>
+
+    <!--play button-->
+    <div class="container mt-4 text-center">
+        <form action="/play" method='GET'>
+            <button type="submit" class="btn btn-outline-primary btn-lg" formaction="/play">Play!</button>
+        </form>
+    </div>
 
 </body>
 
