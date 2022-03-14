@@ -223,10 +223,9 @@ var drawSnake = () => {
 drawSnake()
 
 var begin = () => {
-    if (changeX == 0 && changeY == 0) {
-        console.log('and so it begins...')
-        animeSnake()
-    }
+    console.log('and so it begins...')
+    animeSnake()
+
 }
 
 var animeSnake = () => {
@@ -261,24 +260,28 @@ document.onkeydown = function (event) {
         case 37:
             console.log("Left key is pressed.");
 
-            if (changeX == 0) {
-                changeX = -50;
-                changeY = 0;
+            if (changeX != 0 || changeY != 0) {
+                if (changeX == 0) {
+                    changeX = -50;
+                    changeY = 0;
+                }
             }
             break;
         case 38:
             console.log("Up key is pressed.");
 
-            if (changeY == 0) {
-                changeX = 0;
-                changeY = -50;
+            if (changeX != 0 || changeY != 0) {
+                if (changeY == 0) {
+                    changeX = 0;
+                    changeY = -50;
+                }
             }
             break;
         case 39:
             console.log("Right key is pressed.");
-
-            begin()
-
+            if (changeX == 0 && changeY == 0) {
+                begin()
+            }
             if (changeX == 0) {
                 changeX = 50;
                 changeY = 0;
@@ -287,9 +290,12 @@ document.onkeydown = function (event) {
         case 40:
             console.log("Down key is pressed.");
 
-            if (changeY == 0) {
-                changeX = 0;
-                changeY = 50;
+            if (changeX != 0 || changeY != 0) {
+
+                if (changeY == 0) {
+                    changeX = 0;
+                    changeY = 50;
+                }
             }
             break;
     }
