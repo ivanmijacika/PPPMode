@@ -3,37 +3,31 @@
 // P02 -- Snake++
 
 class Node {
-	// constructor
 	constructor(element) {
 		this.element = element;
 		this.next = null
 	}
 }
-// linkedlist class
+
 class LinkedList {
 	constructor() {
 		this.head = null;
 		this.size = 0;
 	}
 
-	// adds an element at the end
-	// of list
+	// adds an element at the end of list
 	add(element) {
 		// creates a new node
 		var node = new Node(element);
-
-		// to store current node
 		var current;
 
-		// if list is Empty add the
-		// element and make it head
+		// if list is Empty add the element and make it head
 		if (this.head == null)
 			this.head = node;
 		else {
 			current = this.head;
 
-			// iterate to the end of the
-			// list
+			// iterate to the end of the list
 			while (current.next) {
 				current = current.next;
 			}
@@ -44,8 +38,7 @@ class LinkedList {
 		this.size++;
 	}
 
-	// insert element at the position index
-	// of the list
+	// insert element at the position index of the list
 	insertAt(element, index) {
 		if (index < 0 || index > this.size)
 			return console.log("Please enter a valid index.");
@@ -56,8 +49,7 @@ class LinkedList {
 
 			curr = this.head;
 
-			// add the element to the
-			// first index
+			// add the element to the first index
 			if (index == 0) {
 				node.next = this.head;
 				this.head = node;
@@ -65,8 +57,7 @@ class LinkedList {
 				curr = this.head;
 				var it = 0;
 
-				// iterate over the list to find
-				// the position to insert
+				// iterate over the list to find the position to insert
 				while (it < index) {
 					it++;
 					prev = curr;
@@ -81,8 +72,7 @@ class LinkedList {
 		}
 	}
 
-	// removes an element from the
-	// specified location
+	// removes an element from the specified location
 	removeFrom(index) {
 		if (index < 0 || index >= this.size)
 			return console.log("Please Enter a valid index");
@@ -95,8 +85,7 @@ class LinkedList {
 			if (index === 0) {
 				this.head = curr.next;
 			} else {
-				// iterate over the list to the
-				// position to removce an element
+				// iterate over the list to the position to removce an element
 				while (it < index) {
 					it++;
 					prev = curr;
@@ -113,17 +102,14 @@ class LinkedList {
 		}
 	}
 
-	// removes a given element from the
-	// list
+	// removes a given element from the list
 	removeElement(element) {
 		var current = this.head;
 		var prev = null;
 
 		// iterate over the list
 		while (current != null) {
-			// comparing element with current
-			// element if found then remove the
-			// and return true
+			// comparing element with current element if found then remove the and return true
 			if (current.element === element) {
 				if (prev == null) {
 					this.head = current.next;
@@ -147,8 +133,7 @@ class LinkedList {
 
 		// iterate over the list
 		while (current != null) {
-			// compare each element of the list
-			// with given element
+			// compare each element of the list with given element
 			if (current.element === element)
 				return count;
 			count++;
