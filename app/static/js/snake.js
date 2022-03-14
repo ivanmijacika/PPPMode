@@ -243,7 +243,9 @@ var animeSnake = () => {
         head = head.next
     }
 
+    drawSnake()
 
+    requestID = requestAnimationFrame(animeSnake)
 }
 
 
@@ -253,7 +255,7 @@ document.onkeydown = function (event) {
             console.log("Left key is pressed.");
 
             if (changeX == 0) {
-                changeX = -1;
+                changeX = -2;
                 changeY = 0;
             }
             break;
@@ -261,7 +263,7 @@ document.onkeydown = function (event) {
             console.log("Up key is pressed.");
             if (changeY == 0) {
                 changeX = 0;
-                changeY = -1;
+                changeY = -2;
             }
             break;
         case 39:
@@ -269,7 +271,7 @@ document.onkeydown = function (event) {
             begin()
 
             if (changeX == 0) {
-                changeX = 1;
+                changeX = 2;
                 changeY = 0;
             }
             break;
@@ -277,7 +279,7 @@ document.onkeydown = function (event) {
             console.log("Down key is pressed.");
             if (changeY == 0) {
                 changeX = 0;
-                changeY = 1;
+                changeY = 2;
             }
             break;
     }
