@@ -179,7 +179,7 @@ let requestID;
 let clear = (e) => {
     console.log("clear invoked...");
     ctx.clearRect(0, 0, c.offsetWidth, c.offsetHeight);;
-  };
+};
 
 var drawCanvas = () => {
     ctx.fillStyle = "#37C543";
@@ -205,10 +205,10 @@ var changeY = 0;
 
 var snake = new LinkedList();
 
-snake.add([300, 250]);
-snake.add([250, 250]);
-snake.add([200, 250]);
 snake.add([150, 250]);
+snake.add([200, 250]);
+snake.add([250, 250]);
+snake.add([300, 250]);
 console.log(snake);
 
 var drawSnake = () => {
@@ -237,15 +237,22 @@ var animeSnake = () => {
     drawCanvas();
 
     let head = snake.head
-    while (head != null) {
-        head.element[0] += changeX
-        head.element[1] += changeY
-        head = head.next
+    while (head.next != null) {
+        console.log(head.element)
+        console.log(head.next.element)
+
+        head.element[0] += head.next.element[0] - head.element[0]
+        head.element[1] += head.next.element[1] - head.element[1]
+
+        head = head.next;
     }
+    head.element[0] += changeX
+    head.element[1] += changeY
 
     drawSnake()
 
-    requestID = requestAnimationFrame(animeSnake)
+
+    requestAnimationFrame(animeSnake);
 }
 
 
@@ -255,31 +262,34 @@ document.onkeydown = function (event) {
             console.log("Left key is pressed.");
 
             if (changeX == 0) {
-                changeX = -2;
+                changeX = -50;
                 changeY = 0;
             }
             break;
         case 38:
             console.log("Up key is pressed.");
+
             if (changeY == 0) {
                 changeX = 0;
-                changeY = -2;
+                changeY = -50;
             }
             break;
         case 39:
             console.log("Right key is pressed.");
+
             begin()
 
             if (changeX == 0) {
-                changeX = 2;
+                changeX = 50;
                 changeY = 0;
             }
             break;
         case 40:
             console.log("Down key is pressed.");
+
             if (changeY == 0) {
                 changeX = 0;
-                changeY = 2;
+                changeY = 50;
             }
             break;
     }
