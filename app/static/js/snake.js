@@ -215,26 +215,23 @@ var drawSnake = () => {
     ctx.fillStyle = "#327fa8";
 
     let head = snake.head
-    while (head != null) {
-        ctx.fillRect(head.element[0], head.element[1], 50, 50);
+    while (head.next != null) {
+        ctx.fillRect(head.element[0] + 1, head.element[1] + 1, 48, 48);
         head = head.next
     }
+    ctx.fillStyle = "#0f3142";
+    ctx.fillRect(head.element[0] + 1, head.element[1] + 1, 48, 48);
 }
 drawSnake()
 
 var begin = () => {
     console.log('and so it begins...')
-    animeSnake()
-
+    ticker()
 }
 
 var animeSnake = () => {
-    if (requestID) {
-        cancelAnimationFrame(requestID);
-    }
     clear(c);
     drawCanvas();
-
     let head = snake.head
     while (head.next != null) {
         console.log(head.element)
@@ -247,13 +244,22 @@ var animeSnake = () => {
     }
     head.element[0] += changeX
     head.element[1] += changeY
-
-    drawSnake()
-
-
-    requestAnimationFrame(animeSnake);
+    drawSnake();
 }
 
+var ticker = () => {
+    setTimeout(function onTick() {
+        animeSnake();
+        // Call ticker again
+        let tail = snake.head
+        while (tail.next != null) {
+            tail = tail.next
+        }
+        if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600) {
+        ticker()
+        }
+    }, 120)
+}
 
 document.onkeydown = function (event) {
     switch (event.keyCode) {
@@ -269,7 +275,11 @@ document.onkeydown = function (event) {
             break;
         case 38:
             console.log("Up key is pressed.");
-
+            if (changeX == 0 && changeY == 0) {
+                changeX = 0;
+                changeY = -50;
+                begin()
+            }
             if (changeX != 0 || changeY != 0) {
                 if (changeY == 0) {
                     changeX = 0;
@@ -280,6 +290,8 @@ document.onkeydown = function (event) {
         case 39:
             console.log("Right key is pressed.");
             if (changeX == 0 && changeY == 0) {
+                changeX = 50;
+                changeY = 0;
                 begin()
             }
             if (changeX == 0) {
@@ -289,7 +301,11 @@ document.onkeydown = function (event) {
             break;
         case 40:
             console.log("Down key is pressed.");
-
+            if (changeX == 0 && changeY == 0) {
+                changeX = 0;
+                changeY = 50;
+                begin()
+            }
             if (changeX != 0 || changeY != 0) {
 
                 if (changeY == 0) {
