@@ -234,8 +234,8 @@ var animeSnake = () => {
     drawCanvas();
     let head = snake.head
     while (head.next != null) {
-        console.log(head.element)
-        console.log(head.next.element)
+        // console.log(head.element)
+        // console.log(head.next.element)
 
         head.element[0] += head.next.element[0] - head.element[0]
         head.element[1] += head.next.element[1] - head.element[1]
@@ -247,16 +247,37 @@ var animeSnake = () => {
     drawSnake();
 }
 
+const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+function noDuplicates(array) {
+    console.log(array.length);
+    noDupes = true
+    for (var i = 1; i < array.length; i++) {
+        if (equals(array[0], array[i])) {
+            noDupes = false;
+            break;
+        }
+    }
+    return noDupes;
+}
+
 var ticker = () => {
     setTimeout(function onTick() {
         animeSnake();
         // Call ticker again
         let tail = snake.head
+        let elements = [];
         while (tail.next != null) {
-            tail = tail.next
+            console.log(tail.element)
+            elements.push([tail.element[0], tail.element[1]]);
+            tail = tail.next;
         }
-        if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600) {
-        ticker()
+        console.log(tail.element)
+        elements.push([tail.element[0], tail.element[1]]);
+
+        console.log(elements)
+        if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600 && noDuplicates(elements)) {
+            ticker()
         }
     }, 120)
 }
@@ -265,11 +286,12 @@ document.onkeydown = function (event) {
     switch (event.keyCode) {
         case 37:
             console.log("Left key is pressed.");
-
-            if (changeX != 0 || changeY != 0) {
+            if (!(changeX == 0 && changeY == 0)) {
                 if (changeX == 0) {
-                    changeX = -50;
-                    changeY = 0;
+                    if (changeX == 0) {
+                        changeX = -50;
+                        changeY = 0;
+                    }
                 }
             }
             break;
@@ -280,7 +302,7 @@ document.onkeydown = function (event) {
                 changeY = -50;
                 begin()
             }
-            if (changeX != 0 || changeY != 0) {
+            if (changeY == 0) {
                 if (changeY == 0) {
                     changeX = 0;
                     changeY = -50;
@@ -306,7 +328,7 @@ document.onkeydown = function (event) {
                 changeY = 50;
                 begin()
             }
-            if (changeX != 0 || changeY != 0) {
+            if (changeY == 0) {
 
                 if (changeY == 0) {
                     changeX = 0;
