@@ -46,14 +46,13 @@ def top_n(n, mode):
     db = sqlite3.connect(DB_file)
     c = db.cursor()
     highscore_name = "highscore_" + mode
+
+    print(highscore_name)
     
     c.execute("SELECT {mode} FROM scores ORDER BY {mode} DESC".format(mode = highscore_name))
     
     n_scores = []
-    for i in range(n):
-    	ith_score = c.fetchone()
-    	if ith_score:
-    	    n_scores.append(ith_score[0])
+    n_scores = c.fetchall()[0]
     return n_scores
 
 # for testing & debugging purposes
