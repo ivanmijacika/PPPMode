@@ -39,23 +39,24 @@
         <h1 id="title" class="fw-light display-6">Change Your Settings</h1>
     </div>
 
+    <form method = 'POST'>
     <!--Game Speed-->
     <div class="container mt-4 text-center">
         <h4>Speed:</h4>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameSpeed" id="gs1" value="option1">
+            <input class="form-check-input" type="radio" name="gameSpeed" id="gs1" value="slow">
             <label class="form-check-label" for="gs1">Slow</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameSpeed" id="gs2" value="option2" checked>
+            <input class="form-check-input" type="radio" name="gameSpeed" id="gs2" value="medium" checked>
             <label class="form-check-label" for="gs2">Medium</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameSpeed" id="gs3" value="option3">
+            <input class="form-check-input" type="radio" name="gameSpeed" id="gs3" value="fast">
             <label class="form-check-label" for="gs3">Fast</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameSpeed" id="gs4" value="option4">
+            <input class="form-check-input" type="radio" name="gameSpeed" id="gs4" value="insane">
             <label class="form-check-label" for="gs3">Insane!</label>
         </div>
     </div>
@@ -64,15 +65,15 @@
     <div class="container mt-4 text-center">
         <h4>Map Size:</h4>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="mapSize" id="ms1" value="option1">
+            <input class="form-check-input" type="radio" name="mapSize" id="ms1" value = "small">
             <label class="form-check-label" for="ms1">Small</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="mapSize" id="ms2" value="option2" checked>
+            <input class="form-check-input" type="radio" name="mapSize" id="ms2" value = "medium" checked>
             <label class="form-check-label" for="ms2">Medium</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="mapSize" id="ms3" value="option3">
+            <input class="form-check-input" type="radio" name="mapSize" id="ms3" value="large">
             <label class="form-check-label" for="ms3">Large</label>
         </div>
     </div>
@@ -81,38 +82,37 @@
     <div class="container mt-4 text-center">
         <h4>Mode:</h4>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameMode" id="gm1" value="option1" checked>
+            <input class="form-check-input" type="radio" name="gameMode" id="gm1" value="basic" checked>
             <label class="form-check-label" for="gm1">Basic</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameMode" id="gm2" value="option2">
+            <input class="form-check-input" type="radio" name="gameMode" id="gm2" value="obstacles">
             <label class="form-check-label" for="gm2">Obstacles</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameMode" id="gm3" value="option3">
+            <input class="form-check-input" type="radio" name="gameMode" id="gm3" value="border">
             <label class="form-check-label" for="gm3">Border Wrap</label>
         </div>
         <br> <!--newline so two rows-->
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameMode" id="gm4" value="option4">
+            <input class="form-check-input" type="radio" name="gameMode" id="gm4" value="peace">
             <label class="form-check-label" for="gm4">Peace</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameMode" id="gm5" value="option5">
+            <input class="form-check-input" type="radio" name="gameMode" id="gm5" value="poison">
             <label class="form-check-label" for="gm5">Poison Apple</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gameMode" id="gm6" value="option6">
+            <input class="form-check-input" type="radio" name="gameMode" id="gm6" value="boss">
             <label class="form-check-label" for="gm6">Boss</label>
         </div>
     </div>
 
     <!--play button-->
     <div class="container mt-4 text-center">
-        <form action="/play" method='GET'>
-            <button type="submit" class="btn btn-outline-primary btn-lg" formaction="/play">Play!</button>
-        </form>
+        <input type="submit" class="btn btn-outline-primary btn-lg" formaction="/play">
     </div>
+    </form>
 
 </body>
 

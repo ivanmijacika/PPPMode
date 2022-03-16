@@ -17,8 +17,25 @@ def home():
     ''' Loads the landing page '''
     return render_template("home.html")
     
-@app.route('/play')
+@app.route('/play', methods = ['GET', 'POST'])
 def play():
+    method = request.method
+
+    # form data from settings.html 
+    if method == 'POST':
+        speed = request.form.get('gameSpeed')
+        size = request.form.get('mapSize')
+        mode = request.form.get('gameMode')
+        # adjusts settings in session to what is requested in form
+        session['speed'] = speed
+        session['size'] = size
+        session['mode'] = mode
+
+        # testing 
+        print(session['speed'])
+        print(session['size'])
+        print(session['mode'])
+
     return render_template("play.html")
     
 @app.route('/login')
