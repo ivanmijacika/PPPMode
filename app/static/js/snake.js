@@ -185,6 +185,9 @@ var ctx = c.getContext("2d");
 // true if snake has changed its direction in a given frame
 var directChanged = false;
 
+// true if apple exists
+var appleExists = false;
+
 let clear = (e) => {
     /* clears canvas */
     console.log("clear invoked...");
@@ -211,17 +214,21 @@ var drawCanvas = () => {
 }
 drawCanvas()
 
-/* These variables can have values of -50, 0 or 50 */
+// These variables can have values of -50, 0 or 50
 var changeX = 0;
 var changeY = 0;
 
-/* initiate snake */
+// initiate snake
 var snake = new LinkedList();
 snake.add([150, 250]);
 snake.add([200, 250]);
 snake.add([250, 250]);
 snake.add([300, 250]);
 console.log(snake);
+
+var createDrawApple = () => {
+    return
+}
 
 var drawSnake = () => {
     /* draws the snake based on the current positions of each of its segments */
