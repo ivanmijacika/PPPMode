@@ -5,6 +5,7 @@
 // import * as LinkedList from LinkedList
 
 class Node {
+    /* One segemnt of the snake */
     constructor(element) {
         this.element = element;
         this.next = null
@@ -12,6 +13,7 @@ class Node {
 }
 
 class LinkedList {
+    /* The snake object itself */
     constructor() {
         this.head = null;
         this.size = 0;
@@ -170,18 +172,27 @@ class LinkedList {
 
 }
 
-var c = document.getElementById('slate');
-let startbutton = document.getElementById('startbutton')
+class Apple {
+    /* The apple */
+    constructor(coordinates) {
+        this.coordinates = coordinates;
+    }
+}
 
+var c = document.getElementById('slate');
 var ctx = c.getContext("2d");
+
+//init global let for use with animation frames
 let requestID;
 
 let clear = (e) => {
+    /* clears canvas */
     console.log("clear invoked...");
     ctx.clearRect(0, 0, c.offsetWidth, c.offsetHeight);;
 };
 
 var drawCanvas = () => {
+    /* draws game board */
     ctx.fillStyle = "#37C543";
     ctx.fillRect(0, 0, 1200, 600);
 
@@ -200,11 +211,12 @@ var drawCanvas = () => {
 }
 drawCanvas()
 
+/* These variables can have values of -50, 0 or 50 */
 var changeX = 0;
 var changeY = 0;
 
+/* initiate snake */
 var snake = new LinkedList();
-
 snake.add([150, 250]);
 snake.add([200, 250]);
 snake.add([250, 250]);
@@ -212,6 +224,7 @@ snake.add([300, 250]);
 console.log(snake);
 
 var drawSnake = () => {
+    /* draws the snake based on the current positions of each of its segments */
     ctx.fillStyle = "#327fa8";
 
     let head = snake.head
@@ -225,11 +238,13 @@ var drawSnake = () => {
 drawSnake()
 
 var begin = () => {
+    /* play game! Triggered on arrow keypress */
     console.log('and so it begins...')
     ticker()
 }
 
 var animeSnake = () => {
+    /* This is one iteration of the snake game */
     clear(c);
     drawCanvas();
     let head = snake.head
@@ -247,9 +262,11 @@ var animeSnake = () => {
     drawSnake();
 }
 
+/* function for comparing arrays in js */
 const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 function noDuplicates(array) {
+    /* function for checking duplicates in an array in js. Used for snake contact with itself */
     console.log(array.length);
     noDupes = true
     for (var i = 1; i < array.length; i++) {
@@ -262,9 +279,12 @@ function noDuplicates(array) {
 }
 
 var ticker = () => {
+    /* Recursive function for animating snake. I didn't use animation frames because I needed to delay the snake at
+    every frame and animation frames can't do that */
     setTimeout(function onTick() {
         animeSnake();
-        // Call ticker again
+
+        // Make sure the snake isn't dead; stop it if it is
         let tail = snake.head
         let elements = [];
         while (tail.next != null) {
@@ -276,6 +296,7 @@ var ticker = () => {
         elements.push([tail.element[0], tail.element[1]]);
 
         console.log(elements)
+        // Call ticker again for recursive animation. The delay is 120ms */
         if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600 && noDuplicates(elements)) {
             ticker()
         }
@@ -283,6 +304,7 @@ var ticker = () => {
 }
 
 document.onkeydown = function (event) {
+    /* Change direction on arrow keypress */
     switch (event.keyCode) {
         case 37:
             console.log("Left key is pressed.");
