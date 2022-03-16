@@ -51,11 +51,17 @@ def register():
 @app.route('/leaderboard')
 def leaderboard():
     get_db()
-    #returns tuple of top 5 scores
+    #returns tuple of top 5 scores. convert to a list
     scores = top_n(5, 'basic')
+    scores = list(scores)
 
+    length = len(scores)
+    print(length)
+    for i in range(5-length):
+        scores.append(0)
     print(scores)
-    return render_template("leaderboard.html", score0=scores[0])
+    print(scores)
+    return render_template("leaderboard.html", score0=scores[0], score1 = scores[1], score2 = scores[2], score3 = scores[3], score4 = score[4])
     
 @app.route('/settings')
 def settings():
