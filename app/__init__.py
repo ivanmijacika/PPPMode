@@ -50,7 +50,12 @@ def register():
     
 @app.route('/leaderboard')
 def leaderboard():
-    return render_template("leaderboard.html")
+    get_db()
+    #returns tuple of top 5 scores
+    scores = top_n(5, 'basic')
+
+    print(scores)
+    return render_template("leaderboard.html", score0=scores[0])
     
 @app.route('/settings')
 def settings():
@@ -126,6 +131,9 @@ def rAuthenticate():
                 # does not create account because create_user failed (username is taken)
                 else:
                     return render_template('register.html', taken=True)
+
+add_score("J", 5, "basic")
+get_db()
 
 if __name__ == "__main__":
     app.debug = True
