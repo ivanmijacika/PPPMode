@@ -182,8 +182,8 @@ class Apple {
 var c = document.getElementById('slate');
 var ctx = c.getContext("2d");
 
-//init global let for use with animation frames
-let requestID;
+// true if snake has changed its direction in a given frame
+var directChanged = false;
 
 let clear = (e) => {
     /* clears canvas */
@@ -282,6 +282,8 @@ var ticker = () => {
     /* Recursive function for animating snake. I didn't use animation frames because I needed to delay the snake at
     every frame and animation frames can't do that */
     setTimeout(function onTick() {
+        directChanged = false;
+
         animeSnake();
 
         // Make sure the snake isn't dead; stop it if it is
@@ -305,58 +307,69 @@ var ticker = () => {
 
 document.onkeydown = function (event) {
     /* Change direction on arrow keypress */
-    switch (event.keyCode) {
-        case 37:
-            console.log("Left key is pressed.");
-            if (!(changeX == 0 && changeY == 0)) {
-                if (changeX == 0) {
+
+    // make sure the snake's directino has not already been changed that frame
+    if (!directChanged) {
+        switch (event.keyCode) {
+            case 37:
+                console.log("Left key is pressed.");
+                if (!(changeX == 0 && changeY == 0)) {
                     if (changeX == 0) {
-                        changeX = -50;
-                        changeY = 0;
+                        if (changeX == 0) {
+                            changeX = -50;
+                            changeY = 0;
+                            directChanged = true;
+                        }
                     }
                 }
-            }
-            break;
-        case 38:
-            console.log("Up key is pressed.");
-            if (changeX == 0 && changeY == 0) {
-                changeX = 0;
-                changeY = -50;
-                begin()
-            }
-            if (changeY == 0) {
-                if (changeY == 0) {
+                break;
+            case 38:
+                console.log("Up key is pressed.");
+                if (changeX == 0 && changeY == 0) {
                     changeX = 0;
                     changeY = -50;
+                    directChanged = true;
+                    begin();
                 }
-            }
-            break;
-        case 39:
-            console.log("Right key is pressed.");
-            if (changeX == 0 && changeY == 0) {
-                changeX = 50;
-                changeY = 0;
-                begin()
-            }
-            if (changeX == 0) {
-                changeX = 50;
-                changeY = 0;
-            }
-            break;
-        case 40:
-            console.log("Down key is pressed.");
-            if (changeX == 0 && changeY == 0) {
-                changeX = 0;
-                changeY = 50;
-                begin()
-            }
-            if (changeY == 0) {
-
                 if (changeY == 0) {
+                    if (changeY == 0) {
+                        changeX = 0;
+                        changeY = -50;
+                        directChanged = true;
+                    }
+                }
+                break;
+            case 39:
+                console.log("Right key is pressed.");
+                if (changeX == 0 && changeY == 0) {
+                    changeX = 50;
+                    changeY = 0;
+                    directChanged = true;
+                    begin()
+                }
+                if (changeX == 0) {
+                    changeX = 50;
+                    changeY = 0;
+                    directChanged = true;
+                }
+                break;
+            case 40:
+                console.log("Down key is pressed.");
+                if (changeX == 0 && changeY == 0) {
                     changeX = 0;
                     changeY = 50;
+                    directChanged = true;
+                    begin();
                 }
-            }
-            break;
+                if (changeY == 0) {
+
+                    if (changeY == 0) {
+                        changeX = 0;
+                        changeY = 50;
+                        directChanged = true;
+                    }
+                }
+                break;
+        }
     }
 };
