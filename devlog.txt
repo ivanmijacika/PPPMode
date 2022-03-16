@@ -27,18 +27,30 @@ created folders and files for later app ultility. Updated app to not include ran
 ivanM -- 2022-3-9 9:10
 added team flag to repo
 
-justinM, qinaL -- 2022-3-9 9:14
+justinM, qinaL -- 2022-3-9 09:14
 put stuff on home.html
+
+noakaiA -- 2022-3-9 09:19
+formatted home.html and added bootstrap to all pages
 
 qinaL -- 2022-3-9 15:14
 - created base.html and turned all html files created into jinja inheritance format with base.html as parent
 - linked css and bootstrap 
 - some site-wide css- font and text-align center 
 
-ivanM -- 2022-3-10 9:26
+noakaiA -- 2022-3-10 09:25
+reformatted login and register pages to have form control classes
+
+ivanM -- 2022-3-10 09:26
 - added to leaderboard.html
 
-ivanM -- 2022-3-11 9:28
+noakaiA -- 2022-3-10 09:21
+began snake game. Made a... board? It's not a checkerboard but it is something.
+
+noakaiA -- 2022-3-11 09:27
+Finished board. It's a checkerboard!
+
+ivanM -- 2022-3-11 09:28
 - added to settings.html
 
 qinaL -- 2022-3-12 18:51
@@ -50,9 +62,26 @@ qinaL -- 2022-3-13 19:17
 - add_score() improvement- replaced the search loop for username in db with sqlite SELECT EXISTS statement
 - cleaned up some comments, db testcases from __init__.py to db.py
 
+noakaiA -- 2022-3-12 18:19
+Import problems with LinkedList class. How to get it work? QAF post is accumulating answers.
+
+noakaiA -- 2022-3-13 11:57
+Whatever, I just put all the classes into the same js file as the snake functions... it works, sort of. It's wayyyyy too fast.
+
+noakaiA -- 2022-3-14 10: 58
+Changed it to not use animation frames. It now uses a ticker function and moves at a normal speed.
+
 ivanM -- 2022-3-15 9:27
 - added more to settings.html and leaderboard.html
+
+noakaiA -- 2022-3-15 11:00
+Now the snake died when bonked by a wall. Cool
+
+noakaiA -- 2022-3-15 19:01
+Now the snake died when bonked by itself. Cool
 
 qinaL -- 2020-3-15 20:30
 - got form in settings.html to work and send data to /play, where each setting is added to session
 
+noakaiA -- 2022-3-16 09:15
+Removed glitch where you can change snake's direction twice and started on apples. Also, added comments to stuff.
