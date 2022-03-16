@@ -50,18 +50,18 @@ def register():
     
 @app.route('/leaderboard')
 def leaderboard():
+    # for testing
     get_db()
-    #returns tuple of top 5 scores. convert to a list
-    scores = top_n(5, 'basic')
-    scores = list(scores)
 
+    scores = top_n_scores(5, 'basic')
+    users = top_n_users(5, 'basic')
+    print (users)
+    # if lists are less than 5, add until length reaches 5
     length = len(scores)
-    print(length)
     for i in range(5-length):
-        scores.append(0)
-    print(scores)
-    print(scores)
-    return render_template("leaderboard.html", score0=scores[0], score1 = scores[1], score2 = scores[2], score3 = scores[3], score4 = score[4])
+        scores.append("-")
+        users.append("-")
+    return render_template("leaderboard.html", score0=scores[0], score1 = scores[1], score2 = scores[2], score3 = scores[3], score4 = scores[4], user0 = users[0], user1 = users[1], user2 = users[2], user3 = users[3], user4 = users[4])
     
 @app.route('/settings')
 def settings():

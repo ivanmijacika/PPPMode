@@ -40,20 +40,40 @@ def get_score(username, mode):
     c.execute("SELECT {mode} FROM scores WHERE usernames = (?)".format(mode = highscore_name), (username,))
     return c.fetchone()[0]
     	
-def top_n(n, mode):
+def top_n_scores(n, mode):
     '''Gets the top n scores'''
     
     db = sqlite3.connect(DB_file)
     c = db.cursor()
     highscore_name = "highscore_" + mode
-
-    print(highscore_name)
     
     c.execute("SELECT {mode} FROM scores ORDER BY {mode} DESC".format(mode = highscore_name))
     
-    n_scores = []
+    # get all scores in descending order into a tuple
     n_scores = c.fetchall()[0]
+    # converts from tuple to list
+    n_scores = list(n_scores)
+    # list only the top n 
+    n_scores = n_scores[0:n-1]
     return n_scores
+
+def top_n_users(n, mode):
+    '''Gets the top n players'''
+    
+    db = sqlite3.connect(DB_file)
+    c = db.cursor()
+    highscore_name = "highscore_" + mode
+    
+    c.execute("SELECT {user} FROM scores ORDER BY {user} DESC".format(user= "usernames", mode = highscore_name))
+    
+    # gets all players in descending order into a tuple 
+    n_users = c.fetchall()[0]
+    # converts from tuple to list
+    n_users = list(n_users)
+    # list only the top n 
+    n_users = n_users[0:n-1]
+    return n_users
+
 
 # for testing & debugging purposes
 def get_db():

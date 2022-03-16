@@ -88,3 +88,7 @@ Removed glitch where you can change snake's direction twice and started on apple
 
 ivanM -- 2022-3-16 9:18
 - small changes to settings.html and leaderboard.html. Also started working on keeping the correct radio buttons checked in settings.
+
+qinaL -- 2020-3-16 16:42
+- leaderboard now displays data from db
+    - top_n is changed to top_n_scores and top_n_users have been added 
