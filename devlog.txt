@@ -85,3 +85,6 @@ qinaL -- 2020-3-15 20:30
 
 noakaiA -- 2022-3-16 09:15
 Removed glitch where you can change snake's direction twice and started on apples. Also, added comments to stuff.
+
+ivanM -- 2022-3-16 9:18
+- small changes to settings.html and leaderboard.html. Also started working on keeping the correct radio buttons checked in settings.
