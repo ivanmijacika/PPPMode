@@ -53,14 +53,11 @@ def leaderboard():
     # for testing
     get_db()
 
-    scores = top_n_scores(5, 'basic')
-    users = top_n_users(5, 'basic')
-    print (users)
-    # if lists are less than 5, add until length reaches 5
-    length = len(scores)
-    for i in range(5-length):
-        scores.append("-")
-        users.append("-")
+    # top_n returns tuple of lists 
+    data = top_n(5, 'basic')
+    scores = data[0]
+    users = data[1]
+    
     return render_template("leaderboard.html", score0=scores[0], score1 = scores[1], score2 = scores[2], score3 = scores[3], score4 = scores[4], user0 = users[0], user1 = users[1], user2 = users[2], user3 = users[3], user4 = users[4])
     
 @app.route('/settings')
@@ -137,9 +134,6 @@ def rAuthenticate():
                 # does not create account because create_user failed (username is taken)
                 else:
                     return render_template('register.html', taken=True)
-
-add_score("J", 5, "basic")
-get_db()
 
 if __name__ == "__main__":
     app.debug = True

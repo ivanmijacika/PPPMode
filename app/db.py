@@ -40,40 +40,42 @@ def get_score(username, mode):
     c.execute("SELECT {mode} FROM scores WHERE usernames = (?)".format(mode = highscore_name), (username,))
     return c.fetchone()[0]
     	
-def top_n_scores(n, mode):
-    '''Gets the top n scores'''
+def top_n(n, mode):
+    '''Gets the top n scores and users, Returns a tuple of 2 lists'''
     
     db = sqlite3.connect(DB_file)
     c = db.cursor()
     highscore_name = "highscore_" + mode
     
     c.execute("SELECT {mode} FROM scores ORDER BY {mode} DESC".format(mode = highscore_name))
-    
-    # get all scores in descending order into a tuple
-    n_scores = c.fetchall()[0]
-    # converts from tuple to list
-    n_scores = list(n_scores)
-    # list only the top n 
-    n_scores = n_scores[0:n-1]
-    return n_scores
-
-def top_n_users(n, mode):
-    '''Gets the top n players'''
-    
-    db = sqlite3.connect(DB_file)
-    c = db.cursor()
-    highscore_name = "highscore_" + mode
+    n_scores = []
+    for i in range(n):
+        ith_score = c.fetchone()
+        # scores exists, not NoneType
+        if ith_score:
+    	    n_scores.append(ith_score[0])
+        # no score in this place, fill with holder
+        else:
+            n_scores.append("-")
     
     c.execute("SELECT {user} FROM scores ORDER BY {user} DESC".format(user= "usernames", mode = highscore_name))
-    
-    # gets all players in descending order into a tuple 
-    n_users = c.fetchall()[0]
-    # converts from tuple to list
-    n_users = list(n_users)
-    # list only the top n 
-    n_users = n_users[0:n-1]
-    return n_users
+    n_users = []
+    for i in range(n):
+        ith_user = c.fetchone()
+        # user exists, not NoneType
+        if ith_user:
+            n_users.append(ith_user[0])
+        # no user in this place, filled with holder
+        else: 
+            n_users.append("-")
 
+    # in case a user has a row but no score in this mode, it's score is None; name and score to be chnaged to holder
+    for i in range(n):
+        if n_scores[i] == None:
+            n_scores[i] = "-"
+            n_users[i] = "-"
+
+    return(n_scores, n_users)
 
 # for testing & debugging purposes
 def get_db():
@@ -97,4 +99,8 @@ add_score("Rob", 100, "basic") #override dbScore
 add_score("Rob", 100, "jump") #diff mode
 get_db()
 print(top_n(3, "jump"))
+
+add_score("J", 5, "basic")
+add_score("Tom", 15, "basic")
+get_db()
 """
