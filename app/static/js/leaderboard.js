@@ -2,7 +2,9 @@
 // SoftDev pd2
 // P02 -- Snake++
 
-let py_data = fetch('/leaderboard_data')
+
+let py_data = () => {
+    fetch('/leaderboard_data')
     .then(function(response){
         return response.json();
     })
@@ -12,4 +14,15 @@ let py_data = fetch('/leaderboard_data')
         console.log(users);
         let scores = data.pop();
         console.log(scores);
+
+
     })
+}
+
+let dropdown = document.getElementById("modes")
+
+let getMode = () => {
+    console.log(dropdown.value)
+    py_data()
+}
+dropdown.addEventListener('click', getMode)
