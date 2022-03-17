@@ -110,3 +110,6 @@ qinaL -- 2020-3-16 22:16
 noakaiA 2022-3-17 09:17
 Fixed some major bugs. The snake does not randomly die when you get an apple, the apples cannot spawn within the snake and the mechanism
 for spawning apples was streamlines so as to not include recursion.
+
+qinaL -- 2022-3-17 9:20
+- leaderboard now has a dropdown menu with an event listener that fetches data (hardcoded as basic for now) and prints the selected mode 
