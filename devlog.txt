@@ -106,3 +106,7 @@ qinaL -- 2020-3-16 22:16
     - data from python has to be sent to js; working on how (something with JSON (jsonify added as import from flask) and fetch)
     - leaderboard.js was made to do js in leaderboard page; new function in init, leaderboard_data, used to send data to leaderboard.js
     - currently a scores and users array is able to be printed in console
+
+noakaiA 2022-3-17 09:17
+Fixed some major bugs. The snake does not randomly die when you get an apple, the apples cannot spawn within the snake and the mechanism
+for spawning apples was streamlines so as to not include recursion.
