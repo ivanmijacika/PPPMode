@@ -305,6 +305,8 @@ var moveApple = (eles) => {
     console.log(matrixIncludes(eles, [appleX, appleY]));
     // console.log(eles);
     // console.log([appleX, appleY]);
+
+    // if the apple spawn on a segment of the snake, respawn it
     while (matrixIncludes(eles, [appleX, appleY])) {
         console.log(matrixIncludes(eles, [appleX, appleY]));
         appleX = Math.floor(Math.random() * 24) * 50;
