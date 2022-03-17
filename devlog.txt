@@ -116,4 +116,7 @@ qinaL -- 2022-3-17 9:20
 
 qinaL -- 2022-3-17 15:07
 - the data inserted into leaderboard can now be adjusted with js 
-- 
+
+qinaL -- 2022-3-17 15:
+- json can now send python the mode the user selected, leaderboard updates with data of corresponding mode
+    - comms from js and py are all good :D

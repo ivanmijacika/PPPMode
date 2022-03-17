@@ -58,12 +58,22 @@ def leaderboard():
     scores = data[0]
     users = data[1]
 
-    return render_template("leaderboard.html", score0=scores[0], score1 = scores[1], score2 = scores[2], score3 = scores[3], score4 = scores[4], user0 = users[0], user1 = users[1], user2 = users[2], user3 = users[3], user4 = users[4])
+    return render_template("leaderboard.html")
+    #, score0=scores[0], score1 = scores[1], score2 = scores[2], score3 = scores[3], score4 = scores[4], user0 = users[0], user1 = users[1], user2 = users[2], user3 = users[3], user4 = users[4])
 
-@app.route('/leaderboard_data')
+@app.route('/leaderboard_data', methods=['GET', 'POST'])
 def leaderboard_data():
-    data = top_n(5, 'basic')
-    return jsonify(data)
+    method = request.method
+    print(method)
+
+    #get mode from js, send back mode data to js
+    if method == 'POST':
+        # request.get_json gives dictionary; ex: {'mode': 'basic'}
+        mode = request.get_json()['mode']
+        print(mode)
+        data = top_n(5, mode)
+        return jsonify(data)
+    
 
 
 @app.route('/settings')

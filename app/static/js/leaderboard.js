@@ -13,8 +13,14 @@ let update_data = (users, scores) => {
     }
 }
 
-let py_data = () => {
-    fetch('/leaderboard_data')
+
+
+let py_data = (mode) => {
+    fetch('/leaderboard_data', {
+        headers: { 'Content-Type': 'application/json'},
+        method: 'POST',
+        body: JSON.stringify({"mode": mode})
+    })
     .then(function(response){
         return response.json();
     })
@@ -31,8 +37,9 @@ let py_data = () => {
 let dropdown = document.getElementById("modes")
 
 let getMode = () => {
-    console.log(dropdown.value)
-    py_data()
+    mode = dropdown.value
+    console.log(mode)
+    py_data(mode)
 }
 dropdown.addEventListener('click', getMode)
 
