@@ -214,7 +214,7 @@ var drawCanvas = () => {
 }
 drawCanvas()
 
-// These variables can have values of -50, 0 or 50
+// These variables are the snake's speed can have values of -50, 0 or 50
 var changeX = 0;
 var changeY = 0;
 
@@ -226,9 +226,19 @@ snake.add([250, 250]);
 snake.add([300, 250]);
 console.log(snake);
 
-var createDrawApple = () => {
-    return
+
+// These variables are the Apple's coordinates
+appleX = Math.floor(Math.random() * 24) * 50;
+appleY = Math.floor(Math.random() * 12) * 50;
+
+// initiate apple
+var apple = new Apple([appleX, appleY]);
+
+var drawApple = () => {
+    ctx.fillStyle = '#cc3939';
+    ctx.fillRect(appleX + 1, appleY + 1, 48, 48);
 }
+drawApple();
 
 var drawSnake = () => {
     /* draws the snake based on the current positions of each of its segments */
@@ -252,13 +262,8 @@ var begin = () => {
 
 var animeSnake = () => {
     /* This is one iteration of the snake game */
-    clear(c);
-    drawCanvas();
     let head = snake.head
     while (head.next != null) {
-        // console.log(head.element)
-        // console.log(head.next.element)
-
         head.element[0] += head.next.element[0] - head.element[0]
         head.element[1] += head.next.element[1] - head.element[1]
 
@@ -285,16 +290,35 @@ function noDuplicates(array) {
     return noDupes;
 }
 
+var moveApple = () => {
+    /* Changes the apples coordinates, not including the snake's */
+    appleX = Math.floor(Math.random() * 24) * 50;
+    appleY = Math.floor(Math.random() * 12) * 50;
+    head = snake.head;
+    while (head.next != null) {
+        if (appleX == head.element[0] && appleY == head.element[1]) {
+            moveApple();
+        }
+        head = head.next;
+    }
+}
+
 var ticker = () => {
     /* Recursive function for animating snake. I didn't use animation frames because I needed to delay the snake at
     every frame and animation frames can't do that */
     setTimeout(function onTick() {
         directChanged = false;
+        
+        // For apple eating contingencies
+        headPreviousCoords = snake.head.element;
 
+        clear(c);
+        drawCanvas();
+        drawApple();
         animeSnake();
 
         // Make sure the snake isn't dead; stop it if it is
-        let tail = snake.head
+        let tail = snake.head;
         let elements = [];
         while (tail.next != null) {
             console.log(tail.element)
@@ -303,10 +327,20 @@ var ticker = () => {
         }
         console.log(tail.element)
         elements.push([tail.element[0], tail.element[1]]);
-
         console.log(elements)
+
+        // Exit function if snake hits itself
+        if (!noDuplicates(elements)) return;
+
+
+        // Check if snake is on an apple. If so, move apple and add to snake.
+        if (appleX == tail.element[0] && appleY == tail.element[1]) {
+            moveApple();
+            snake.insertAt([headPreviousCoords[0], headPreviousCoords[1]], 0);
+        }
+
         // Call ticker again for recursive animation. The delay is 120ms */
-        if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600 && noDuplicates(elements)) {
+        if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600) {
             ticker()
         }
     }, 120)
