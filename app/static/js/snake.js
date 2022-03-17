@@ -188,6 +188,10 @@ var directChanged = false;
 // true if apple exists
 var appleExists = false;
 
+// Show score
+let score = 0;
+document.getElementById("score").innerHTML = "Score: " + score;
+
 let clear = (e) => {
     /* clears canvas */
     // console.log("clear invoked...");
@@ -314,6 +318,12 @@ var moveApple = (eles) => {
     }
 }
 
+var updateScore = () => {
+    score += 1;
+    document.getElementById("score").innerHTML = "Score: " + score;
+    console.log(score);
+}
+
 var ticker = () => {
     /* Recursive function for animating snake. I didn't use animation frames because I needed to delay the snake at
     every frame and animation frames can't do that */
@@ -344,10 +354,11 @@ var ticker = () => {
         if (!noDuplicates(elements)) return;
 
 
-        // Check if snake is on an apple. If so, move apple and add to snake.
+        // Check if snake is on an apple. If so, move apple and add to snake and score.
         if (appleX == tail.element[0] && appleY == tail.element[1]) {
             moveApple(elements);
             snake.insertAt([headPreviousCoords[0], headPreviousCoords[1]], 0);
+            updateScore()
         }
 
         // Call ticker again for recursive animation. The delay is 120ms */
