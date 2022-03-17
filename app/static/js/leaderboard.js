@@ -14,8 +14,6 @@ let py_data = () => {
         console.log(users);
         let scores = data.pop();
         console.log(scores);
-
-
     })
 }
 
@@ -26,3 +24,6 @@ let getMode = () => {
     py_data()
 }
 dropdown.addEventListener('click', getMode)
+
+let table = document.getElementById("table")
+console.log(table)
