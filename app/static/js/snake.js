@@ -190,7 +190,7 @@ var appleExists = false;
 
 let clear = (e) => {
     /* clears canvas */
-    console.log("clear invoked...");
+    // console.log("clear invoked...");
     ctx.clearRect(0, 0, c.offsetWidth, c.offsetHeight);;
 };
 
@@ -277,9 +277,16 @@ var animeSnake = () => {
 /* function for comparing arrays in js */
 const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
+function matrixIncludes(matrix, array) {
+/* function for checking if a matrix includes an array*/
+    for (i = 0; i < matrix.length; i++) {
+        if (equals(matrix[i], array)) return true;
+    }
+    return false;
+}
+
 function noDuplicates(array) {
     /* function for checking duplicates in an array in js. Used for snake contact with itself */
-    console.log(array.length);
     noDupes = true
     for (var i = 1; i < array.length; i++) {
         if (equals(array[0], array[i])) {
@@ -290,16 +297,20 @@ function noDuplicates(array) {
     return noDupes;
 }
 
-var moveApple = () => {
+var moveApple = (eles) => {
     /* Changes the apples coordinates, not including the snake's */
     appleX = Math.floor(Math.random() * 24) * 50;
     appleY = Math.floor(Math.random() * 12) * 50;
     head = snake.head;
-    while (head.next != null) {
-        if (appleX == head.element[0] && appleY == head.element[1]) {
-            moveApple();
-        }
-        head = head.next;
+    console.log(matrixIncludes(eles, [appleX, appleY]));
+    // console.log(eles);
+    // console.log([appleX, appleY]);
+
+    // if the apple spawn on a segment of the snake, respawn it
+    while (matrixIncludes(eles, [appleX, appleY])) {
+        console.log(matrixIncludes(eles, [appleX, appleY]));
+        appleX = Math.floor(Math.random() * 24) * 50;
+        appleY = Math.floor(Math.random() * 12) * 50;
     }
 }
 
@@ -321,13 +332,13 @@ var ticker = () => {
         let tail = snake.head;
         let elements = [];
         while (tail.next != null) {
-            console.log(tail.element)
+            // console.log(tail.element)
             elements.push([tail.element[0], tail.element[1]]);
             tail = tail.next;
         }
-        console.log(tail.element)
+        // console.log(tail.element)
         elements.push([tail.element[0], tail.element[1]]);
-        console.log(elements)
+        // console.log(elements)
 
         // Exit function if snake hits itself
         if (!noDuplicates(elements)) return;
@@ -335,7 +346,7 @@ var ticker = () => {
 
         // Check if snake is on an apple. If so, move apple and add to snake.
         if (appleX == tail.element[0] && appleY == tail.element[1]) {
-            moveApple();
+            moveApple(elements);
             snake.insertAt([headPreviousCoords[0], headPreviousCoords[1]], 0);
         }
 
@@ -353,7 +364,7 @@ document.onkeydown = function (event) {
     if (!directChanged) {
         switch (event.keyCode) {
             case 37:
-                console.log("Left key is pressed.");
+                // console.log("Left key is pressed.");
                 if (!(changeX == 0 && changeY == 0)) {
                     if (changeX == 0) {
                         if (changeX == 0) {
@@ -365,7 +376,7 @@ document.onkeydown = function (event) {
                 }
                 break;
             case 38:
-                console.log("Up key is pressed.");
+                // console.log("Up key is pressed.");
                 if (changeX == 0 && changeY == 0) {
                     changeX = 0;
                     changeY = -50;
@@ -381,7 +392,7 @@ document.onkeydown = function (event) {
                 }
                 break;
             case 39:
-                console.log("Right key is pressed.");
+                // console.log("Right key is pressed.");
                 if (changeX == 0 && changeY == 0) {
                     changeX = 50;
                     changeY = 0;
@@ -395,7 +406,7 @@ document.onkeydown = function (event) {
                 }
                 break;
             case 40:
-                console.log("Down key is pressed.");
+                // console.log("Down key is pressed.");
                 if (changeX == 0 && changeY == 0) {
                     changeX = 0;
                     changeY = 50;
