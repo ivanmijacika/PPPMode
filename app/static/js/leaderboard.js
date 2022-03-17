@@ -2,6 +2,16 @@
 // SoftDev pd2
 // P02 -- Snake++
 
+let items = document.getElementsByTagName("td");
+
+let update_data = (users, scores) => {
+    let row = 0;
+    for (let i = 0; i < items.length; i += 2){
+        items[i].innerHTML = users[row];
+        items[i+1].innerHTML = scores[row];
+        row++;
+    }
+}
 
 let py_data = () => {
     fetch('/leaderboard_data')
@@ -14,6 +24,7 @@ let py_data = () => {
         console.log(users);
         let scores = data.pop();
         console.log(scores);
+        update_data(users, scores);
     })
 }
 

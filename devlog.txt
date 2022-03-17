@@ -113,3 +113,7 @@ for spawning apples was streamlines so as to not include recursion.
 
 qinaL -- 2022-3-17 9:20
 - leaderboard now has a dropdown menu with an event listener that fetches data (hardcoded as basic for now) and prints the selected mode 
+
+qinaL -- 2022-3-17 15:07
+- the data inserted into leaderboard can now be adjusted with js 
+- 
