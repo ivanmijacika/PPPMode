@@ -3,7 +3,7 @@
 # P02 -- Snake++
 
 from os import urandom
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify 
 from auth import *
 from db import *
 import sqlite3
@@ -16,11 +16,11 @@ app.secret_key = urandom(32) #create random key
 def home():
     ''' Loads the landing page '''
     return render_template("home.html")
-    
+
 @app.route('/play', methods = ['GET', 'POST'])
 def play():
     method = request.method
-
+    
     # form data from settings.html 
     if method == 'POST':
         speed = request.form.get('gameSpeed')
@@ -48,7 +48,7 @@ def register():
     ''' Displays register page '''
     return render_template('register.html')
     
-@app.route('/leaderboard')
+@app.route('/leaderboard', methods = ['GET', 'POST'])
 def leaderboard():
     # for testing
     get_db()
@@ -57,9 +57,15 @@ def leaderboard():
     data = top_n(5, 'basic')
     scores = data[0]
     users = data[1]
-    
+
     return render_template("leaderboard.html", score0=scores[0], score1 = scores[1], score2 = scores[2], score3 = scores[3], score4 = scores[4], user0 = users[0], user1 = users[1], user2 = users[2], user3 = users[3], user4 = users[4])
-    
+
+@app.route('/leaderboard_data')
+def leaderboard_data():
+    data = top_n(5, 'basic')
+    return jsonify(data)
+
+
 @app.route('/settings')
 def settings():
     return render_template("settings.html")
