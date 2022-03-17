@@ -97,3 +97,6 @@ qinaL -- 2020-3-16 17:11
 - found issues with the getting the db data into leaderboard; fixed them
 - combined top_n_scores and top_n_users into one function --> top_n; top_n returns a tuple of 2 lists
 - NOTE: leaderboard is only a board for basic mode
+
+noakaiA 2022-3-16 20:32
+Added apples and growing. The game is finally pretty much done.
