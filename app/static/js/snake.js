@@ -2,7 +2,28 @@
 // SoftDev pd2
 // P02 -- Snake++
 
-// import * as LinkedList from LinkedList
+// comms with python to update 
+let py_score = (score) => {
+    fetch('/play_data', {
+        // sends selected mode to python
+        headers: { 'Content-Type': 'application/json'},
+        method: 'POST',
+        body: JSON.stringify({"mode": mode})
+    })
+    .then(function(response){
+        // gets back db data for mode in list with scores and users
+        return response.json();
+    })
+    .then(data => {
+        // updates leaderboard table with data 
+        console.log(data);
+        let users = data.pop();
+        console.log(users);
+        let scores = data.pop();
+        console.log(scores);
+        update_data(users, scores);
+    })
+}
 
 class Node {
     /* One segemnt of the snake */
@@ -193,10 +214,6 @@ let score = 0;
 var scoreEle = document.getElementById("score")
 scoreEle.innerHTML = "Score: " + score;
 
-// For getting the score variable into python
-var scoreReturn = document.getElementById("scoreReturn");
-scoreReturn.setAttribute('value', score);
-
 let clear = (e) => {
     /* clears canvas */
     // console.log("clear invoked...");
@@ -326,7 +343,6 @@ var moveApple = (eles) => {
 var updateScore = () => {
     score += 1;
     scoreEle.innerHTML = "Score: " + score;
-    scoreReturn.setAttribute('value', score);
     console.log(score);
 }
 
