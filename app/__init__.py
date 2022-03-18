@@ -76,6 +76,17 @@ def leaderboard_data():
     
 
 
+@app.route('/play_data', methods=['GET', 'POST'])
+def play_data():
+    method = request.method
+    print(method)
+
+    #get mode from js, send back mode data to js
+    if method == 'POST':
+        # request.get_json gives dictionary; ex: {'mode': 'basic'}
+        score = request.get_json()['score']
+        
+
 @app.route('/settings')
 def settings():
     return render_template("settings.html")

@@ -53,7 +53,7 @@ def top_n(n, mode):
         ith_score = c.fetchone()
         # scores exists, not NoneType
         if ith_score:
-    	    n_scores.append(ith_score[0])
+            n_scores.append(ith_score[0])
         # no score in this place, fill with holder
         else:
             n_scores.append("-")
@@ -87,7 +87,7 @@ def get_db():
 
     db.close()
 
-"""
+
 #or testing add_score and get_score, rm db before testing tho
 add_score("Rob", 10, "basic")
 print(get_score("Rob", "basic"))
@@ -100,7 +100,6 @@ add_score("Rob", 100, "jump") #diff mode
 get_db()
 print(top_n(3, "jump"))
 
-add_score("J", 5, "basic")
+# add_score("J", 5, "basic")
 add_score("Tom", 15, "basic")
 get_db()
-"""
