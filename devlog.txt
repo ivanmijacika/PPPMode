@@ -122,3 +122,6 @@ qinaL -- 2022-3-17 15:32
     - comms from js and py are all good :D
 - DD updated with js having its leaderboard component, along with specifications on where data is being transferred between js and python 
 
+qinaL -- 2022-3-17 21:11
+- added comments to leaderboard.js; leaderboard now starts off with basic mode data when first loaded 
+
