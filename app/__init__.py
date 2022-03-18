@@ -14,6 +14,11 @@ app.secret_key = urandom(32) #create random key
 @app.route('/')
 @app.route('/home')
 def home():
+    
+    session['speed'] = 'medium'
+    session['size'] = 'medium'
+    session['mode'] = 'basic'
+    
     ''' Loads the landing page '''
     return render_template("home.html")
 
@@ -74,7 +79,10 @@ def leaderboard_data():
         data = top_n(5, mode)
         return jsonify(data)
     
-
+@app.route('/play_data')
+def play_data():
+    data = session
+    return jsonify(data)
 
 @app.route('/settings')
 def settings():

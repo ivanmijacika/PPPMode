@@ -172,6 +172,33 @@ class LinkedList {
 
 }
 
+let speed;
+let size;
+let mode;
+    
+let py_data2 = fetch('/play_data')
+    .then(function(response){
+        return response.json();
+    })
+    .then(data => {
+        speed = data['speed']
+        size = data['size']
+        mode = data['mode']
+        setSpeed(speed);
+        console.log(speed, size, mode) 
+    })
+
+delay = 200; 
+
+var setSpeed = (speed) => {
+	if (speed == "slow") delay = 280;
+	else if (speed == "fast") delay = 120;
+	else if (speed == "insane") delay = 60;
+	else delay = 200;
+}
+
+console.log(delay)
+
 class Apple {
     /* The apple */
     constructor(coordinates) {
@@ -292,6 +319,7 @@ function matrixIncludes(matrix, array) {
 function noDuplicates(array) {
     /* function for checking duplicates in an array in js. Used for snake contact with itself */
     noDupes = true
+
     for (var i = 1; i < array.length; i++) {
         if (equals(array[0], array[i])) {
             noDupes = false;
@@ -365,7 +393,7 @@ var ticker = () => {
         if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600) {
             ticker()
         }
-    }, 120)
+    }, delay)
 }
 
 document.onkeydown = function (event) {
