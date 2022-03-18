@@ -159,6 +159,13 @@ def rAuthenticate():
                 else:
                     return render_template('register.html', taken=True)
 
+
+add_score("Rob", 0, "basic")
+add_score("Rob1", 100, "basic")
+add_score("Rob1", 100, "poison")
+add_score("Rob1", 100, "peace")
+add_score("not Rob", 100, "poison")
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

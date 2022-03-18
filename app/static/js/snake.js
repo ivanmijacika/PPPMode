@@ -217,7 +217,12 @@ var appleExists = false;
 
 // Show score
 let score = 0;
-document.getElementById("score").innerHTML = "Score: " + score;
+var scoreEle = document.getElementById("score")
+scoreEle.innerHTML = "Score: " + score;
+
+// For getting the score variable into python
+var scoreReturn = document.getElementById("scoreReturn");
+scoreReturn.setAttribute('value', score);
 
 let clear = (e) => {
     /* clears canvas */
@@ -348,7 +353,8 @@ var moveApple = (eles) => {
 
 var updateScore = () => {
     score += 1;
-    document.getElementById("score").innerHTML = "Score: " + score;
+    scoreEle.innerHTML = "Score: " + score;
+    scoreReturn.setAttribute('value', score);
     console.log(score);
 }
 
