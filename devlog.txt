@@ -125,3 +125,7 @@ qinaL -- 2022-3-17 15:32
 qinaL -- 2022-3-17 21:11
 - added comments to leaderboard.js; leaderboard now starts off with basic mode data when first loaded 
 
+qinaL -- 2022-3-18 9:00
+- added all the other modes into leaderboard dropdown 
+- added test cases into db to test leaderboard, everything is okay so far
+
