@@ -136,3 +136,9 @@ qinaL -- 2022-3-19 15:15
     - if logged in, username, score, and mode ('basic' hardcoded for now) is sent to python, which adds score to db 
 - found an error in top_n, it is fixed now (prev username order was by alphabetical order, now by score order)
 
+qinaL -- 2022-3-19 17:37
+- implemented map size changes  
+    - loading of game is now much slower (we can get rid of map size or add a loading screen? idk)
+    - it is slower because js has to get the settings then create and draw everything; otherwise what is drawn will only match default settings and look weird
+    - it turns out js has something called async functions, where js will not wait for the function to be resolved before moving on; thus the settings will not be set before js goes to draw everything else
+    - snake_save.js has been made in case the map size implementation messed something up, we have a fallback to b4 map size

@@ -14,18 +14,24 @@ app.secret_key = urandom(32) #create random key
 @app.route('/')
 @app.route('/home')
 def home():
-    
+    ''' Loads the landing page '''
+    return render_template("home.html")
+
+def set_settings():
+    print("setting settings")
     session['speed'] = 'medium'
     session['size'] = 'medium'
     session['mode'] = 'basic'
-    
-    ''' Loads the landing page '''
-    return render_template("home.html")
 
 @app.route('/play', methods = ['GET', 'POST'])
 def play():
     method = request.method
     
+    print(session)
+    # if no settings are in session, then add default ones
+    if not ('speed' in session):
+        set_settings()
+
     # form data from settings.html 
     if method == 'POST':
         speed = request.form.get('gameSpeed')
@@ -91,11 +97,11 @@ def score_data():
     # js giving score 
     if method == 'POST':
         data = request.get_json()
-        print(data)
+        #print(data)
         username = data['username']
         score = data['score']
         mode = data['mode']
-        print(username, score, mode)
+        #print(username, score, mode)
         add_score(username, score, mode)
         return jsonify("OK")
 
