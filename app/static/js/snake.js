@@ -2,29 +2,6 @@
 // SoftDev pd2
 // P02 -- Snake++
 
-// comms with python to update 
-let py_score = (score) => {
-    fetch('/play_data', {
-        // sends selected mode to python
-        headers: { 'Content-Type': 'application/json'},
-        method: 'POST',
-        body: JSON.stringify({"mode": mode})
-    })
-    .then(function(response){
-        // gets back db data for mode in list with scores and users
-        return response.json();
-    })
-    .then(data => {
-        // updates leaderboard table with data 
-        console.log(data);
-        let users = data.pop();
-        console.log(users);
-        let scores = data.pop();
-        console.log(scores);
-        update_data(users, scores);
-    })
-}
-
 class Node {
     /* One segemnt of the snake */
     constructor(element) {
@@ -279,7 +256,6 @@ snake.add([250, 250]);
 snake.add([300, 250]);
 console.log(snake);
 
-
 // These variables are the Apple's coordinates
 appleX = Math.floor(Math.random() * 24) * 50;
 appleY = Math.floor(Math.random() * 12) * 50;
@@ -374,6 +350,40 @@ var updateScore = () => {
     console.log(score);
 }
 
+var add_score = () => {
+    // user not logged in, so this is null, and no score is added
+    username = document.getElementById("username");
+    if (!username) {
+        return;
+    }
+    // user logged in, gets "| current user: q", substrings to get only name
+    username = username.innerHTML.substr(16).trim();
+    mode = 'basic' // hardcode for now 
+    //console.log(score)
+    //console.log(username)
+    //console.log(mode)
+    let data = {"username" : username, "score" : score, "mode": mode};
+    console.log(data);
+    fetch('/score_data', {
+        headers: { 'Content-Type': 'application/json'},
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then (response => {
+        if (response === 'OK'){
+            console.log("score is added")
+        }
+    })
+}
+
+var hadDied = () => {
+    add_score();
+    window.alert("Your score is: " + score);
+}
+
 var ticker = () => {
     /* Recursive function for animating snake. I didn't use animation frames because I needed to delay the snake at
     every frame and animation frames can't do that */
@@ -400,8 +410,14 @@ var ticker = () => {
         elements.push([tail.element[0], tail.element[1]]);
         // console.log(elements)
 
+        /*
         // Exit function if snake hits itself
-        if (!noDuplicates(elements)) return;
+        if (!noDuplicates(elements)) {
+            isAlive = false;
+            hasDied();
+            return;
+        }
+        */
 
 
         // Check if snake is on an apple. If so, move apple and add to snake and score.
@@ -411,9 +427,13 @@ var ticker = () => {
             updateScore()
         }
 
-        // Call ticker again for recursive animation. The delay is 120ms */
-        if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600) {
+        // Call ticker again for recursive animation. The delay is declared by settings prev */
+        if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600 && noDuplicates(elements)) {
             ticker()
+        }
+        else {
+            console.log("dead");
+            hadDied();
         }
     }, delay)
 }

@@ -73,7 +73,7 @@ def leaderboard_data():
 
     #get mode from js, send back mode data to js
     if method == 'POST':
-        # request.get_json gives dictionary; ex: {'mode': 'basic'}
+        #request.get_json gives dictionary; ex: {'mode': 'basic'}
         mode = request.get_json()['mode']
         print(mode)
         data = top_n(5, mode)
@@ -84,6 +84,23 @@ def play_data():
     data = session
     return jsonify(data)
 
+@app.route('/score_data', methods = ['GET', 'POST'])
+def score_data():
+    method = request.method
+    print(method)
+    # js giving score 
+    if method == 'POST':
+        data = request.get_json()
+        print(data)
+        username = data['username']
+        score = data['score']
+        mode = data['mode']
+        print(username, score, mode)
+        add_score(username, score, mode)
+        return jsonify("OK")
+
+        
+'''
 @app.route('/play_data', methods=['GET', 'POST'])
 def play_data():
     method = request.method
@@ -92,7 +109,8 @@ def play_data():
     #get mode from js, send back mode data to js
     if method == 'POST':
         # request.get_json gives dictionary; ex: {'mode': 'basic'}
-        score = request.get_json()['score']
+         score = request.get_json()['score']
+'''
         
 
 @app.route('/settings')
@@ -170,12 +188,13 @@ def rAuthenticate():
                 else:
                     return render_template('register.html', taken=True)
 
-
+'''
 add_score("Rob", 0, "basic")
 add_score("Rob1", 100, "basic")
 add_score("Rob1", 100, "poison")
 add_score("Rob1", 100, "peace")
 add_score("not Rob", 100, "poison")
+'''
 
 if __name__ == "__main__":
     app.debug = True

@@ -58,7 +58,7 @@ def top_n(n, mode):
         else:
             n_scores.append("-")
     
-    c.execute("SELECT {user} FROM scores ORDER BY {user} DESC".format(user= "usernames", mode = highscore_name))
+    c.execute("SELECT {user} FROM scores ORDER BY {mode} DESC".format(user= "usernames", mode = highscore_name))
     n_users = []
     for i in range(n):
         ith_user = c.fetchone()
@@ -87,7 +87,7 @@ def get_db():
 
     db.close()
 
-
+'''
 #or testing add_score and get_score, rm db before testing tho
 add_score("Rob", 10, "basic")
 print(get_score("Rob", "basic"))
@@ -103,3 +103,4 @@ print(top_n(3, "jump"))
 # add_score("J", 5, "basic")
 add_score("Tom", 15, "basic")
 get_db()
+'''

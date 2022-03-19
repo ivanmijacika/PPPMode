@@ -129,3 +129,10 @@ qinaL -- 2022-3-18 9:00
 - added all the other modes into leaderboard dropdown 
 - added test cases into db to test leaderboard, everything is okay so far
 
+qinaL -- 2022-3-19 15:15
+- when snake dies, pop up appears (might change what appears when die later?) and function to add score is called
+- adding score from js game to db is implemented (should be all good i hope)
+    - if not logged in, no score added
+    - if logged in, username, score, and mode ('basic' hardcoded for now) is sent to python, which adds score to db 
+- found an error in top_n, it is fixed now (prev username order was by alphabetical order, now by score order)
+
