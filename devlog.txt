@@ -142,3 +142,6 @@ qinaL -- 2022-3-19 17:37
     - it is slower because js has to get the settings then create and draw everything; otherwise what is drawn will only match default settings and look weird
     - it turns out js has something called async functions, where js will not wait for the function to be resolved before moving on; thus the settings will not be set before js goes to draw everything else
     - snake_save.js has been made in case the map size implementation messed something up, we have a fallback to b4 map size
+
+qinaL -- 2022-3-19 17:47
+- updated DD's map sizes
