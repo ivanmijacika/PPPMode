@@ -406,7 +406,7 @@ var animeSnake = () => {
 
 
     // Loop snake for border wrap mode
-    if (mode == 'border') {
+    if (mode == 'wrap') {
         if (head.element[0] < 0) {
             head.element[0] = 1200-length/2;
         }
