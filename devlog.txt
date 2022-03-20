@@ -156,3 +156,7 @@ qinaL -- 2022-3-19 20:06
 noakaiA, qinaL 2022-3-20 14:23
 - Fixed everything
 - Added obstacles mode
+
+noakaiA, qinaL 2022-3-20 17:32
+- Added border wrap mode
+- discobandit and on-death conditional bug fixes
