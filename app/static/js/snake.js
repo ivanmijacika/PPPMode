@@ -200,7 +200,7 @@ let settings = async function() {
     
 settings(); 
 
-delay = 200; 
+var delay = 200;
 
 var setSpeed = (speed) => {
 	if (speed == "slow") delay = 280;
@@ -305,10 +305,10 @@ console.log(snake);
 let x = 0;
 
 let apple_coor_x = () => {
-    return Math.floor(Math.random() * (1200/length/2)) * length/2;
+    return Math.floor(Math.random() * (1200/(length/2))) * length/2;
 } 
 let apple_coor_y = () => {
-    return Math.floor(Math.random() * (600/length/2)) * length/2;
+    return Math.floor(Math.random() * (600/(length/2))) * length/2;
 }
 
 // initiate apple
@@ -485,15 +485,6 @@ var ticker = () => {
         elements.push([tail.element[0], tail.element[1]]);
         // console.log(elements)
 
-        /*
-        // Exit function if snake hits itself
-        if (!noDuplicates(elements)) {
-            isAlive = false;
-            hasDied();
-            return;
-        }
-        */
-
 
         // Check if snake is on an apple. If so, move apple and add to snake and score.
         if (appleX == tail.element[0] && appleY == tail.element[1]) {
@@ -502,9 +493,14 @@ var ticker = () => {
             updateScore()
         }
 
+        console.log(changeX);
+        console.log(changeY);
+
         // in case user gets snake long enough to fill entire map, 
         // then snake resets to inital (score should keep?) (not tested)
-        isFill();
+
+        // test:
+        // isFill();
 
         // Call ticker again for recursive animation. The delay is declared by settings prev */
         if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600 && noDuplicates(elements)) {

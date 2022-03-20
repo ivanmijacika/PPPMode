@@ -100,7 +100,12 @@ def score_data():
         add_score(username, score, mode)
         return jsonify("OK")
 
-        
+
+@app.route('/play_data')
+def play_data():
+    data = session
+    return jsonify(data)
+
 '''
 @app.route('/play_data', methods=['GET', 'POST'])
 def play_data():
