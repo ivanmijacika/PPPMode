@@ -172,13 +172,9 @@ class LinkedList {
 
 let speed;
 let size;
-let length; // dictated by size
 let mode;
     
-
-
-let settings = async function() {
-    await fetch('/play_data')
+let py_data2 = fetch('/play_data')
     .then(function(response){
         return response.json();
     })
@@ -187,18 +183,8 @@ let settings = async function() {
         size = data['size']
         mode = data['mode']
         setSpeed(speed);
-        setSize(size);
         console.log(speed, size, mode) 
-        // length has to be set else it'll be weird
-        drawCanvas();
-        setSnake();
-        drawSnake()
-        setApple();
-        drawApple();
     })
-}
-    
-settings(); 
 
 delay = 200; 
 
@@ -209,20 +195,7 @@ var setSpeed = (speed) => {
 	else delay = 200;
 }
 
-// length is how big each square is, more length = bigger square = smaller board
-length = 100; 
-var setSize = (size) => {
-    if (size === "small"){
-        length = 200;
-    }
-    else if (size === "medium"){
-        length = 100;
-    }
-    else{
-        length = 50;
-    }
-    console.log("sized")
-}
+console.log(delay)
 
 class Apple {
     /* The apple */
@@ -256,74 +229,45 @@ var drawCanvas = () => {
     ctx.fillStyle = "#37C543";
     ctx.fillRect(0, 0, 1200, 600);
 
-    for (let i = 0; i <= 1200; i += length) {
-        for (let j = 0; j <= 600; j += length) {
+    for (let i = 0; i <= 1200; i += 100) {
+        for (let j = 0; j <= 600; j += 100) {
             ctx.fillStyle = "#199B24";
-            ctx.fillRect(i, j, length/2, length/2);
+            ctx.fillRect(i, j, 50, 50);
         }
     }
-    
-    for (let i = length/2; i <= 1200; i += length) {
-        for (let j = length/2; j <= 600; j += length) {
+    for (let i = 50; i <= 1200; i += 100) {
+        for (let j = 50; j <= 600; j += 100) {
             ctx.fillStyle = "#199B24";
-            ctx.fillRect(i, j, length/2, length/2);
+            ctx.fillRect(i, j, 50, 50);
         }
     }
-    
 }
-
+drawCanvas()
 
 // These variables are the snake's speed can have values of -50, 0 or 50
-// -50, 0, 50 are medium size deafults; chnages by -length/2, 0, or length/2
 var changeX = 0;
 var changeY = 0;
 
 // initiate snake
 var snake = new LinkedList();
-
-var setSnake = () => {
-    snake.add([400, 200]);
-    snake.add([400 + length/2, 200]);
-    snake.add([400+ length, 200]);
-    snake.add([400+ length*(3/2), 200]);
-}
-/*
 snake.add([150, 250]);
 snake.add([200, 250]);
 snake.add([250, 250]);
 snake.add([300, 250]);
-console.log(length)
-snake.add([400, 200]);
-snake.add([500, 200]);
-snake.add([600, 200]);
-snake.add([700, 200]);
 console.log(snake);
-*/
 
 // These variables are the Apple's coordinates
-
-let x = 0;
-
-let apple_coor_x = () => {
-    return Math.floor(Math.random() * (1200/length/2)) * length/2;
-} 
-let apple_coor_y = () => {
-    return Math.floor(Math.random() * (600/length/2)) * length/2;
-}
+appleX = Math.floor(Math.random() * 24) * 50;
+appleY = Math.floor(Math.random() * 12) * 50;
 
 // initiate apple
-var apple;
-
-var setApple = () => {
-    appleX = apple_coor_x();
-    appleY = apple_coor_y();    
-    apple = new Apple([appleX, appleY])
-}
+var apple = new Apple([appleX, appleY]);
 
 var drawApple = () => {
     ctx.fillStyle = '#cc3939';
-    ctx.fillRect(appleX +1, appleY +1, length/2-2, length/2-2);
+    ctx.fillRect(appleX + 1, appleY + 1, 48, 48);
 }
+drawApple();
 
 var drawSnake = () => {
     /* draws the snake based on the current positions of each of its segments */
@@ -331,12 +275,13 @@ var drawSnake = () => {
 
     let head = snake.head
     while (head.next != null) {
-        ctx.fillRect(head.element[0] + 1, head.element[1] + 1, length/2-2, length/2-2);
+        ctx.fillRect(head.element[0] + 1, head.element[1] + 1, 48, 48);
         head = head.next
     }
     ctx.fillStyle = "#0f3142";
-    ctx.fillRect(head.element[0] + 1, head.element[1] + 1, length/2-2, length/2-2);
+    ctx.fillRect(head.element[0] + 1, head.element[1] + 1, 48, 48);
 }
+drawSnake()
 
 var begin = () => {
     /* play game! Triggered on arrow keypress */
@@ -384,8 +329,8 @@ function noDuplicates(array) {
 
 var moveApple = (eles) => {
     /* Changes the apples coordinates, not including the snake's */
-    appleX = apple_coor_x();
-    appleY = apple_coor_y();
+    appleX = Math.floor(Math.random() * 24) * 50;
+    appleY = Math.floor(Math.random() * 12) * 50;
     head = snake.head;
     console.log(matrixIncludes(eles, [appleX, appleY]));
     // console.log(eles);
@@ -394,8 +339,8 @@ var moveApple = (eles) => {
     // if the apple spawn on a segment of the snake, respawn it
     while (matrixIncludes(eles, [appleX, appleY])) {
         console.log(matrixIncludes(eles, [appleX, appleY]));
-        appleX = apple_coor_x();
-        appleY = apple_coor_y();
+        appleX = Math.floor(Math.random() * 24) * 50;
+        appleY = Math.floor(Math.random() * 12) * 50;
     }
 }
 
@@ -417,17 +362,14 @@ var add_score = () => {
     //console.log(score)
     //console.log(username)
     //console.log(mode)
-
-    // data of score to be added to db
     let data = {"username" : username, "score" : score, "mode": mode};
+    console.log(data);
     fetch('/score_data', {
-        // sends data to python
         headers: { 'Content-Type': 'application/json'},
         method: 'POST',
         body: JSON.stringify(data)
     })
     .then(function(response){
-        // gets back response, should be "OK"
         return response.json();
     })
     .then (response => {
@@ -437,24 +379,7 @@ var add_score = () => {
     })
 }
 
-var isFill = () => {
-    let total;
-    if (size === "small"){
-        total = 72; // 12 * 6
-    }
-    else if (size === "mediium"){
-        total = 288; // 24 * 12
-    }
-    else {
-        total = 1,152 // 48 * 24
-    }
-    if (snake.size >= total){
-        snake = new LinkedList();
-        setSnake();
-    }
-}
-
-var hasDied = () => {
+var hadDied = () => {
     add_score();
     window.alert("Your score is: " + score);
 }
@@ -502,17 +427,13 @@ var ticker = () => {
             updateScore()
         }
 
-        // in case user gets snake long enough to fill entire map, 
-        // then snake resets to inital (score should keep?) (not tested)
-        isFill();
-
         // Call ticker again for recursive animation. The delay is declared by settings prev */
         if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600 && noDuplicates(elements)) {
             ticker()
         }
         else {
             console.log("dead");
-            hasDied();
+            hadDied();
         }
     }, delay)
 }
@@ -528,7 +449,7 @@ document.onkeydown = function (event) {
                 if (!(changeX == 0 && changeY == 0)) {
                     if (changeX == 0) {
                         if (changeX == 0) {
-                            changeX = -length/2;
+                            changeX = -50;
                             changeY = 0;
                             directChanged = true;
                         }
@@ -539,14 +460,14 @@ document.onkeydown = function (event) {
                 // console.log("Up key is pressed.");
                 if (changeX == 0 && changeY == 0) {
                     changeX = 0;
-                    changeY = -length/2;
+                    changeY = -50;
                     directChanged = true;
                     begin();
                 }
                 if (changeY == 0) {
                     if (changeY == 0) {
                         changeX = 0;
-                        changeY = -length/2;
+                        changeY = -50;
                         directChanged = true;
                     }
                 }
@@ -554,13 +475,13 @@ document.onkeydown = function (event) {
             case 39:
                 // console.log("Right key is pressed.");
                 if (changeX == 0 && changeY == 0) {
-                    changeX = length/2;
+                    changeX = 50;
                     changeY = 0;
                     directChanged = true;
                     begin()
                 }
                 if (changeX == 0) {
-                    changeX = length/2;
+                    changeX = 50;
                     changeY = 0;
                     directChanged = true;
                 }
@@ -569,7 +490,7 @@ document.onkeydown = function (event) {
                 // console.log("Down key is pressed.");
                 if (changeX == 0 && changeY == 0) {
                     changeX = 0;
-                    changeY = length/2;
+                    changeY = 50;
                     directChanged = true;
                     begin();
                 }
@@ -577,7 +498,7 @@ document.onkeydown = function (event) {
 
                     if (changeY == 0) {
                         changeX = 0;
-                        changeY = length/2;
+                        changeY = 50;
                         directChanged = true;
                     }
                 }
