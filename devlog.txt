@@ -3,7 +3,7 @@ SoftDev
 P02 - Snake++ | Devlog
 
 ivanM, justinM, noakaiA, qinaL -- 2022-3-4 09:26
-Started making the design doc and came up with ideas on how to expand the simple snake game into a full project. We decided on difficulty levels (map sizes, speeds) and 
+- Started making the design doc and came up with ideas on how to expand the simple snake game into a full project. We decided on difficulty levels (map sizes, speeds) and 
 different modes (obstacles, border wrapping, invincible)
 
 noakaiA, qinaL -- 2022-3-6 22:16
@@ -13,25 +13,25 @@ qinaL -- 2022-03-07 18:46
 - added heading to README.md 
 
 noakaiA, qinaL -- 2022-3-7 21:13
-Revised design doc based on in-class comments. There weren't too many, so it was just a sentance here or there
+- Revised design doc based on in-class comments. There weren't too many, so it was just a sentance here or there
 
-justinM, qinaL -- 2022-3-8 9:15
-created working Flask app
+justinM, qinaL -- 2022-3-8 09:15
+- created working Flask app
 
-ivanM, qinaL, justinM -- 2022-3-8 9:21
-created requirements.txt
+ivanM, qinaL, justinM -- 2022-3-8 09:21
+- created requirements.txt
 
-noakaiA -- 2022-3-8 9:22
-created folders and files for later app ultility. Updated app to not include random unused functions
+noakaiA -- 2022-3-8 09:22
+- created folders and files for later app ultility. Updated app to not include random unused functions
 
-ivanM -- 2022-3-9 9:10
-added team flag to repo
+ivanM -- 2022-3-9 09:10
+- added team flag to repo
 
 justinM, qinaL -- 2022-3-9 09:14
-put stuff on home.html
+- put stuff on home.html
 
 noakaiA -- 2022-3-9 09:19
-formatted home.html and added bootstrap to all pages
+- formatted home.html and added bootstrap to all pages
 
 qinaL -- 2022-3-9 15:14
 - created base.html and turned all html files created into jinja inheritance format with base.html as parent
@@ -39,16 +39,16 @@ qinaL -- 2022-3-9 15:14
 - some site-wide css- font and text-align center 
 
 noakaiA -- 2022-3-10 09:25
-reformatted login and register pages to have form control classes
+- reformatted login and register pages to have form control classes
 
 ivanM -- 2022-3-10 09:26
 - added to leaderboard.html
 
 noakaiA -- 2022-3-10 09:21
-began snake game. Made a... board? It's not a checkerboard but it is something.
+- began snake game. Made a... board? It's not a checkerboard but it is something.
 
 noakaiA -- 2022-3-11 09:27
-Finished board. It's a checkerboard!
+- Finished board. It's a checkerboard!
 
 ivanM -- 2022-3-11 09:28
 - added to settings.html
@@ -63,30 +63,30 @@ qinaL -- 2022-3-13 19:17
 - cleaned up some comments, db testcases from __init__.py to db.py
 
 noakaiA -- 2022-3-12 18:19
-Import problems with LinkedList class. How to get it work? QAF post is accumulating answers.
+- Import problems with LinkedList class. How to get it work? QAF post is accumulating answers.
 
 noakaiA -- 2022-3-13 11:57
-Whatever, I just put all the classes into the same js file as the snake functions... it works, sort of. It's wayyyyy too fast.
+- Whatever, I just put all the classes into the same js file as the snake functions... it works, sort of. It's wayyyyy too fast.
 
-noakaiA -- 2022-3-14 10: 58
-Changed it to not use animation frames. It now uses a ticker function and moves at a normal speed.
+noakaiA -- 2022-3-14 10:58
+- Changed it to not use animation frames. It now uses a ticker function and moves at a normal speed.
 
-ivanM -- 2022-3-15 9:27
+ivanM -- 2022-3-15 09:27
 - added more to settings.html and leaderboard.html
 
 noakaiA -- 2022-3-15 11:00
-Now the snake died when bonked by a wall. Cool
+- Now the snake dies when bonked by a wall. Cool
 
 noakaiA -- 2022-3-15 19:01
-Now the snake died when bonked by itself. Cool
+- Now the snake dies when bonked by itself. Cool
 
 qinaL -- 2020-3-15 20:30
 - got form in settings.html to work and send data to /play, where each setting is added to session
 
 noakaiA -- 2022-3-16 09:15
-Removed glitch where you can change snake's direction twice and started on apples. Also, added comments to stuff.
+- Removed glitch where you can change snake's direction twice and started on apples. Also, added comments to stuff.
 
-ivanM -- 2022-3-16 9:18
+ivanM -- 2022-3-16 09:18
 - small changes to settings.html and leaderboard.html. Also started working on keeping the correct radio buttons checked in settings.
 
 qinaL -- 2020-3-16 16:42
@@ -99,7 +99,7 @@ qinaL -- 2020-3-16 17:11
 - NOTE: leaderboard is only a board for basic mode
 
 noakaiA 2022-3-16 20:32
-Added apples and growing. The game is finally pretty much done.
+- Added apples and growing. The game is finally pretty much done.
 
 qinaL -- 2020-3-16 22:16
 - planning on showing data in leaderboard with js so each mode can be shown on same page 
@@ -108,10 +108,10 @@ qinaL -- 2020-3-16 22:16
     - currently a scores and users array is able to be printed in console
 
 noakaiA 2022-3-17 09:17
-Fixed some major bugs. The snake does not randomly die when you get an apple, the apples cannot spawn within the snake and the mechanism
+- Fixed some major bugs. The snake does not randomly die when you get an apple, the apples cannot spawn within the snake and the mechanism
 for spawning apples was streamlines so as to not include recursion.
 
-qinaL -- 2022-3-17 9:20
+qinaL -- 2022-3-17 09:20
 - leaderboard now has a dropdown menu with an event listener that fetches data (hardcoded as basic for now) and prints the selected mode 
 
 qinaL -- 2022-3-17 15:07
@@ -125,12 +125,12 @@ qinaL -- 2022-3-17 15:32
 qinaL -- 2022-3-17 21:11
 - added comments to leaderboard.js; leaderboard now starts off with basic mode data when first loaded 
 
-qinaL -- 2022-3-18 9:00
+qinaL -- 2022-3-18 09:00
 - added all the other modes into leaderboard dropdown 
 - added test cases into db to test leaderboard, everything is okay so far
 
 noakaiA 2022-3-18 09:24
-Tried to get score into python. Qina tried to explain it to me. I kinda get it, but it would probably be faster if I stuck to the visual js side of things.
+- Tried to get score into python. Qina tried to explain it to me. I kinda get it, but it would probably be faster if I stuck to the visual js side of things.
 
 qinaL -- 2022-3-19 15:15
 - when snake dies, pop up appears (might change what appears when die later?) and function to add score is called
