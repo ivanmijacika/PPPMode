@@ -214,7 +214,6 @@ let settings = async function () {
             }
         })
 }
-
 settings();
 
 var delay = 200;
@@ -397,13 +396,31 @@ var animeSnake = () => {
     /* This is one iteration of the snake game */
     let head = snake.head
     while (head.next != null) {
-        head.element[0] += head.next.element[0] - head.element[0]
-        head.element[1] += head.next.element[1] - head.element[1]
+        head.element[0] = head.next.element[0];
+        head.element[1] = head.next.element[1];
 
         head = head.next;
     }
     head.element[0] += changeX
     head.element[1] += changeY
+
+
+    // Loop snake for border wrap mode
+    if (mode == 'border') {
+        if (head.element[0] < 0) {
+            head.element[0] = 1200-length/2;
+        }
+        if (head.element[1] < 0) {
+            head.element[1] = 600-length/2;
+        }
+        if (head.element[0] >= 1200) {
+            head.element[0] = 0;
+        }
+        if (head.element[1] >= 600) {
+            head.element[1] = 0;
+        }
+    }
+
     drawSnake();
 }
 
@@ -577,8 +594,11 @@ var ticker = () => {
         // test:
         // isFill();
 
-        // Call ticker again for recursive animation. The delay is declared by settings prev */
-        if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600 && noDuplicates(elements)) {
+        // Call ticker again for recursive animation. The delay is declared by settings prev *
+
+        console.log(tail.element[0], tail.element[1])
+
+        if (tail.element[0] >= 0 && tail.element[0] < 1200 && tail.element[1] >= 0 && tail.element[1] < 600 && noDuplicates(elements)) {
             ticker()
         }
         else {
