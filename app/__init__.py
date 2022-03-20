@@ -78,11 +78,6 @@ def leaderboard_data():
         print(mode)
         data = top_n(5, mode)
         return jsonify(data)
-    
-@app.route('/play_data')
-def play_data():
-    data = session
-    return jsonify(data)
 
 @app.route('/play_data', methods=['GET', 'POST'])
 def play_data():
