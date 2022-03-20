@@ -170,65 +170,75 @@ class LinkedList {
 
 }
 
-let speed;
-let size;
-let length; // dictated by size
-let mode;
-    
-
-
-let settings = async function() {
-    await fetch('/play_data')
-    .then(function(response){
-        return response.json();
-    })
-    .then(data => {
-        speed = data['speed']
-        size = data['size']
-        mode = data['mode']
-        setSpeed(speed);
-        setSize(size);
-        console.log(speed, size, mode) 
-        // length has to be set else it'll be weird
-        drawCanvas();
-        setSnake();
-        drawSnake()
-        setApple();
-        drawApple();
-    })
-}
-    
-settings(); 
-
-var delay = 200;
-
-var setSpeed = (speed) => {
-	if (speed == "slow") delay = 280;
-	else if (speed == "fast") delay = 120;
-	else if (speed == "insane") delay = 60;
-	else delay = 200;
-}
-
-// length is how big each square is, more length = bigger square = smaller board
-length = 100; 
-var setSize = (size) => {
-    if (size === "small"){
-        length = 200;
-    }
-    else if (size === "medium"){
-        length = 100;
-    }
-    else{
-        length = 50;
-    }
-    console.log("sized")
-}
-
 class Apple {
     /* The apple */
     constructor(coordinates) {
         this.coordinates = coordinates;
     }
+}
+
+class Obstacle {
+    /* The obstacle */
+    constructor(coordinates) {
+        this.coordinates = coordinates;
+    }
+}
+
+let speed;
+let size;
+let length; // dictated by size
+let mode;
+let addedObstacle;
+
+
+let settings = async function () {
+    await fetch('/play_data')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(data => {
+            speed = data['speed']
+            size = data['size']
+            mode = data['mode']
+            setSpeed(speed);
+            setSize(size);
+            console.log(speed, size, mode)
+            // length has to be set else it'll be weird
+            drawCanvas();
+            setSnake();
+            drawSnake()
+            setApple();
+            drawApple();
+            if (mode == 'obstacles') {
+                drawObstacles();
+            }
+        })
+}
+
+settings();
+
+var delay = 200;
+
+var setSpeed = (speed) => {
+    if (speed == "slow") delay = 280;
+    else if (speed == "fast") delay = 120;
+    else if (speed == "insane") delay = 60;
+    else delay = 200;
+}
+
+// length is how big each square is, more length = bigger square = smaller board
+length = 100;
+var setSize = (size) => {
+    if (size === "small") {
+        length = 200;
+    }
+    else if (size === "medium") {
+        length = 100;
+    }
+    else {
+        length = 50;
+    }
+    console.log("sized")
 }
 
 var c = document.getElementById('slate');
@@ -248,8 +258,8 @@ scoreEle.innerHTML = "Score: " + score;
 let clear = (e) => {
     /* clears canvas */
     // console.log("clear invoked...");
-    ctx.clearRect(0, 0, c.offsetWidth, c.offsetHeight);;
-};
+    ctx.clearRect(0, 0, c.offsetWidth, c.offsetHeight);
+}
 
 var drawCanvas = () => {
     /* draws game board */
@@ -259,17 +269,17 @@ var drawCanvas = () => {
     for (let i = 0; i <= 1200; i += length) {
         for (let j = 0; j <= 600; j += length) {
             ctx.fillStyle = "#199B24";
-            ctx.fillRect(i, j, length/2, length/2);
+            ctx.fillRect(i, j, length / 2, length / 2);
         }
     }
-    
-    for (let i = length/2; i <= 1200; i += length) {
-        for (let j = length/2; j <= 600; j += length) {
+
+    for (let i = length / 2; i <= 1200; i += length) {
+        for (let j = length / 2; j <= 600; j += length) {
             ctx.fillStyle = "#199B24";
-            ctx.fillRect(i, j, length/2, length/2);
+            ctx.fillRect(i, j, length / 2, length / 2);
         }
     }
-    
+
 }
 
 
@@ -283,9 +293,9 @@ var snake = new LinkedList();
 
 var setSnake = () => {
     snake.add([400, 200]);
-    snake.add([400 + length/2, 200]);
-    snake.add([400+ length, 200]);
-    snake.add([400+ length*(3/2), 200]);
+    snake.add([400 + length / 2, 200]);
+    snake.add([400 + length, 200]);
+    snake.add([400 + length * (3 / 2), 200]);
 }
 /*
 snake.add([150, 250]);
@@ -305,24 +315,63 @@ console.log(snake);
 let x = 0;
 
 let apple_coor_x = () => {
-    return Math.floor(Math.random() * (1200/(length/2))) * length/2;
-} 
+    return Math.floor(Math.random() * (1200 / (length / 2))) * length / 2;
+}
 let apple_coor_y = () => {
-    return Math.floor(Math.random() * (600/(length/2))) * length/2;
+    return Math.floor(Math.random() * (600 / (length / 2))) * length / 2;
+}
+
+let obstacle_coor_x = () => {
+    return Math.floor(Math.random() * (1200 / (length / 2))) * length / 2;
+}
+let obstacle_coor_y = () => {
+    return Math.floor(Math.random() * (600 / (length / 2))) * length / 2;
 }
 
 // initiate apple
 var apple;
 
+// initiate obstacle
+var obstacles = [];
+
 var setApple = () => {
     appleX = apple_coor_x();
-    appleY = apple_coor_y();    
+    appleY = apple_coor_y();
     apple = new Apple([appleX, appleY])
 }
 
 var drawApple = () => {
     ctx.fillStyle = '#cc3939';
-    ctx.fillRect(appleX +1, appleY +1, length/2-2, length/2-2);
+    ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 2, length / 2 - 2);
+}
+
+var setObstacle = (eles) => {
+    console.log('obstacle set')
+
+    addedObstacle = true;
+
+    let obstacleX = obstacle_coor_x();
+    let obstacleY = obstacle_coor_y();
+
+    console.log(matrixIncludes(eles, [obstacleX, obstacleY]));
+
+    while (matrixIncludes(eles, [obstacleX, obstacleY])) {
+        obstacleX = obstacle_coor_x();
+        obstacleY = obstacle_coor_y();
+    }
+    obstacle = new Obstacle([obstacleX, obstacleY])
+    obstacles.push(obstacle);
+}
+
+var drawApple = () => {
+    ctx.fillStyle = '#cc3939';
+    ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 2, length / 2 - 2);
+}
+
+var drawObstacles = () => {
+    ctx.fillStyle = '#563d2d';
+    for (var i = 0; i < obstacles.length; i++)
+        ctx.fillRect(obstacles[i].coordinates[0], obstacles[i].coordinates[1], length / 2, length / 2);
 }
 
 var drawSnake = () => {
@@ -331,11 +380,11 @@ var drawSnake = () => {
 
     let head = snake.head
     while (head.next != null) {
-        ctx.fillRect(head.element[0] + 1, head.element[1] + 1, length/2-2, length/2-2);
+        ctx.fillRect(head.element[0] + 1, head.element[1] + 1, length / 2 - 2, length / 2 - 2);
         head = head.next
     }
     ctx.fillStyle = "#0f3142";
-    ctx.fillRect(head.element[0] + 1, head.element[1] + 1, length/2-2, length/2-2);
+    ctx.fillRect(head.element[0] + 1, head.element[1] + 1, length / 2 - 2, length / 2 - 2);
 }
 
 var begin = () => {
@@ -362,7 +411,7 @@ var animeSnake = () => {
 const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 function matrixIncludes(matrix, array) {
-/* function for checking if a matrix includes an array*/
+    /* function for checking if a matrix includes an array*/
     for (i = 0; i < matrix.length; i++) {
         if (equals(matrix[i], array)) return true;
     }
@@ -386,7 +435,7 @@ var moveApple = (eles) => {
     /* Changes the apples coordinates, not including the snake's */
     appleX = apple_coor_x();
     appleY = apple_coor_y();
-    head = snake.head;
+
     console.log(matrixIncludes(eles, [appleX, appleY]));
     // console.log(eles);
     // console.log([appleX, appleY]);
@@ -413,6 +462,10 @@ var updateScore = () => {
         score += 2;
     }
 
+    if (score % 4 == 0 || Math.round(score) % 4 == 0 || Math.floor(score) % 4 == 0) {
+        addedObstacle = false;
+    }
+
     scoreEle.innerHTML = "Score: " + score;
     console.log(score);
 }
@@ -425,43 +478,42 @@ var add_score = () => {
     }
     // user logged in, gets "| current user: q", substrings to get only name
     username = username.innerHTML.substr(16).trim();
-    mode = 'basic' // hardcode for now 
     //console.log(score)
     //console.log(username)
     //console.log(mode)
 
     // data of score to be added to db
 
-    let data = {"username" : username, "score" : score, "mode": mode};
+    let data = { "username": username, "score": score, "mode": mode };
     fetch('/score_data', {
         // sends data to python
-        headers: { 'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         method: 'POST',
         body: JSON.stringify(data)
     })
-    .then(function(response){
-        // gets back response, should be "OK"
-        return response.json();
-    })
-    .then (response => {
-        if (response === 'OK'){
-            console.log("score is added")
-        }
-    })
+        .then(function (response) {
+            // gets back response, should be "OK"
+            return response.json();
+        })
+        .then(response => {
+            if (response === 'OK') {
+                console.log("score is added")
+            }
+        })
 }
 
 var isFill = () => {
     let total;
-    if (size === "small"){
+    if (size === "small") {
         total = 72; // 12 * 6
     }
-    else if (size === "mediium"){
+    else if (size === "mediium") {
         total = 288; // 24 * 12
     }
     else {
-        total = 1,152 // 48 * 24
+        total = 1, 152 // 48 * 24
     }
-    if (snake.size >= total){
+    if (snake.size >= total) {
         snake = new LinkedList();
         setSnake();
     }
@@ -477,7 +529,7 @@ var ticker = () => {
     every frame and animation frames can't do that */
     setTimeout(function onTick() {
         directChanged = false;
-        
+
         // For apple eating contingencies
         headPreviousCoords = snake.head.element;
 
@@ -496,8 +548,18 @@ var ticker = () => {
         }
         // console.log(tail.element)
         elements.push([tail.element[0], tail.element[1]]);
+
+        for (var i = 0; i < obstacles.length; i++) {
+            elements.push([obstacles[i].coordinates[0], obstacles[i].coordinates[1]]);
+        }
         // console.log(elements)
 
+        if (mode == 'obstacles') {
+            drawObstacles();
+            if (!addedObstacle) {
+                setObstacle(elements);
+            }
+        }
 
         // Check if snake is on an apple. If so, move apple and add to snake and score.
         if (appleX == tail.element[0] && appleY == tail.element[1]) {
@@ -506,8 +568,8 @@ var ticker = () => {
             updateScore()
         }
 
-        console.log(changeX);
-        console.log(changeY);
+        // console.log(changeX);
+        // console.log(changeY);
 
         // in case user gets snake long enough to fill entire map, 
         // then snake resets to inital (score should keep?) (not tested)
@@ -537,7 +599,7 @@ document.onkeydown = function (event) {
                 if (!(changeX == 0 && changeY == 0)) {
                     if (changeX == 0) {
                         if (changeX == 0) {
-                            changeX = -length/2;
+                            changeX = -length / 2;
                             changeY = 0;
                             directChanged = true;
                         }
@@ -548,14 +610,14 @@ document.onkeydown = function (event) {
                 // console.log("Up key is pressed.");
                 if (changeX == 0 && changeY == 0) {
                     changeX = 0;
-                    changeY = -length/2;
+                    changeY = -length / 2;
                     directChanged = true;
                     begin();
                 }
                 if (changeY == 0) {
                     if (changeY == 0) {
                         changeX = 0;
-                        changeY = -length/2;
+                        changeY = -length / 2;
                         directChanged = true;
                     }
                 }
@@ -563,13 +625,13 @@ document.onkeydown = function (event) {
             case 39:
                 // console.log("Right key is pressed.");
                 if (changeX == 0 && changeY == 0) {
-                    changeX = length/2;
+                    changeX = length / 2;
                     changeY = 0;
                     directChanged = true;
                     begin()
                 }
                 if (changeX == 0) {
-                    changeX = length/2;
+                    changeX = length / 2;
                     changeY = 0;
                     directChanged = true;
                 }
@@ -578,7 +640,7 @@ document.onkeydown = function (event) {
                 // console.log("Down key is pressed.");
                 if (changeX == 0 && changeY == 0) {
                     changeX = 0;
-                    changeY = length/2;
+                    changeY = length / 2;
                     directChanged = true;
                     begin();
                 }
@@ -586,7 +648,7 @@ document.onkeydown = function (event) {
 
                     if (changeY == 0) {
                         changeX = 0;
-                        changeY = length/2;
+                        changeY = length / 2;
                         directChanged = true;
                     }
                 }

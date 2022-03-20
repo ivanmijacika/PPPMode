@@ -152,3 +152,7 @@ qinaL -- 2022-3-19 17:47
 qinaL -- 2022-3-19 20:06 
 - issue found: in small map, when snake gets longer, the mechanism for spawning new apple fails and game bugs out
 - added a isFill() for in case snake gets long enough to fill entire map, then snake resets; NOT TESTED
+
+noakaiA, qinaL 2022-3-20 14:23
+- Fixed everything
+- Added obstacles mode
