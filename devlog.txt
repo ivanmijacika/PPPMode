@@ -157,7 +157,7 @@ noakaiA, qinaL 2022-3-20 14:23
 - Fixed everything
     - Specifically, everything that Qina destroyed over the weekend, which was most things
 - Added obstacles mode
-    - Had to figure out the hard that walls and apples are a bit different
+    - Had to figure out the hard way that walls and apples are a bit different
 
 noakaiA, qinaL 2022-3-20 17:32
 - Added border wrap mode
