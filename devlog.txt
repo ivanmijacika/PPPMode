@@ -141,4 +141,8 @@ qinaL -- 2022-3-19 17:37
     - loading of game is now much slower (we can get rid of map size or add a loading screen? idk)
     - it is slower because js has to get the settings then create and draw everything; otherwise what is drawn will only match default settings and look weird
     - it turns out js has something called async functions, where js will not wait for the function to be resolved before moving on; thus the settings will not be set before js goes to draw everything else
-    - snake_save.js has been made in case the map size implementation messed something up, we have a fallback to b4 map size
+    - snake_save.js has been made in case the map size implementation messed something up, we have a reference
+
+qinaL -- 2022-3-19 20:06 
+- issue found: in small map, when snake gets longer, the mechanism for spawning new apple fails and game bugs out
+- added a isFill() for in case snake gets long enough to fill entire map, then snake resets; NOT TESTED

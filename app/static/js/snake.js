@@ -256,8 +256,6 @@ var drawCanvas = () => {
     ctx.fillStyle = "#37C543";
     ctx.fillRect(0, 0, 1200, 600);
 
-    console.log("canvas")
-
     for (let i = 0; i <= 1200; i += length) {
         for (let j = 0; j <= 600; j += length) {
             ctx.fillStyle = "#199B24";
@@ -324,7 +322,7 @@ var setApple = () => {
 
 var drawApple = () => {
     ctx.fillStyle = '#cc3939';
-    ctx.fillRect(appleX +1, appleY, length/2-2, length/2-2);
+    ctx.fillRect(appleX +1, appleY +1, length/2-2, length/2-2);
 }
 
 var drawSnake = () => {
@@ -439,7 +437,24 @@ var add_score = () => {
     })
 }
 
-var hadDied = () => {
+var isFill = () => {
+    let total;
+    if (size === "small"){
+        total = 72; // 12 * 6
+    }
+    else if (size === "mediium"){
+        total = 288; // 24 * 12
+    }
+    else {
+        total = 1,152 // 48 * 24
+    }
+    if (snake.size >= total){
+        snake = new LinkedList();
+        setSnake();
+    }
+}
+
+var hasDied = () => {
     add_score();
     window.alert("Your score is: " + score);
 }
@@ -487,13 +502,17 @@ var ticker = () => {
             updateScore()
         }
 
+        // in case user gets snake long enough to fill entire map, 
+        // then snake resets to inital (score should keep?) (not tested)
+        isFill();
+
         // Call ticker again for recursive animation. The delay is declared by settings prev */
         if (tail.element[0] > -1 && tail.element[0] < 1200 && tail.element[1] > -1 && tail.element[1] < 600 && noDuplicates(elements)) {
             ticker()
         }
         else {
             console.log("dead");
-            hadDied();
+            hasDied();
         }
     }, delay)
 }
