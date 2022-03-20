@@ -129,6 +129,9 @@ qinaL -- 2022-3-18 9:00
 - added all the other modes into leaderboard dropdown 
 - added test cases into db to test leaderboard, everything is okay so far
 
+noakaiA 2022-3-18 09:24
+Tried to get score into python. Qina tried to explain it to me. I kinda get it, but it would probably be faster if I stuck to the visual js side of things.
+
 qinaL -- 2022-3-19 15:15
 - when snake dies, pop up appears (might change what appears when die later?) and function to add score is called
 - adding score from js game to db is implemented (should be all good i hope)
