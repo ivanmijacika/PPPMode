@@ -149,4 +149,3 @@ qinaL -- 2022-3-19 17:47
 qinaL -- 2022-3-19 20:06 
 - issue found: in small map, when snake gets longer, the mechanism for spawning new apple fails and game bugs out
 - added a isFill() for in case snake gets long enough to fill entire map, then snake resets; NOT TESTED
-    - snake_save.js has been made in case the map size implementation messed something up, we have a fallback to b4 map size
