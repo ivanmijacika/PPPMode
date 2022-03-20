@@ -400,7 +400,19 @@ var moveApple = (eles) => {
 }
 
 var updateScore = () => {
-    score += 1;
+    if (speed == 'slow') {
+        score += 0.5;
+    }
+    else if (speed == 'medium') {
+        score += 1;
+    }
+    else if (speed == 'fast') {
+        score += 1.5;
+    }
+    else if (speed == 'insane') {
+        score += 2;
+    }
+
     scoreEle.innerHTML = "Score: " + score;
     console.log(score);
 }
@@ -419,6 +431,7 @@ var add_score = () => {
     //console.log(mode)
 
     // data of score to be added to db
+
     let data = {"username" : username, "score" : score, "mode": mode};
     fetch('/score_data', {
         // sends data to python
