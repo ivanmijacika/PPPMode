@@ -16,7 +16,7 @@ app.secret_key = urandom(32) #create random key
 def home():
     ''' Loads the landing page '''
     if 'username' in session: 
-        ''' usernames, basic, obstacles, flying, wrap, peace, jump, poison'''
+        ''' usernames, basic, obstacles, wrap, peace, flying, poison'''
         ''' <h4>Basic: {{basic}} </h4>
                     <h4>Obstacle: {{obstacle}} </h4>
                     <h4>Border Wrap: {{wrap}} </h4>
@@ -31,7 +31,7 @@ def home():
             elif scores[i] < 0:
                 scores[i] = 0
         '''
-        return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[4], peace = scores[5], flying= scores[3], poison= scores[7])
+        return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[3], peace = scores[4], flying= scores[5], poison= scores[6])
     return render_template("home.html")
 
 def set_settings():
@@ -92,13 +92,13 @@ def leaderboard():
 @app.route('/leaderboard_data', methods=['GET', 'POST'])
 def leaderboard_data():
     method = request.method
-    print(method)
+    # print(method)
 
     #get mode from js, send back mode data to js
     if method == 'POST':
         #request.get_json gives dictionary; ex: {'mode': 'basic'}
         mode = request.get_json()['mode']
-        print(mode)
+        # print(mode)
         data = top_n(5, mode)
         return jsonify(data)
 

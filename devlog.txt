@@ -178,5 +178,11 @@ noakaiA -- 2022-3-21 15:23
     - Can't have negative highscores anymore
     - Poison apples are the same size on other map sizes
 
-qinaL -- 2022-3-22 15:21
-- alteration of None to 0 when getting user's scores moved from init to db.py
+qinaL -- 2022-3-22 19:14
+- alteration of None to 0 when getting user's scores moved from init to db.py, catch for negative scores is in snake.js for poison instead of init
+- updated db columns with our new modes, got rid of old ones; made the order on which modes is shown in db, home, and leaderboard consistent
+    - order is as follows: basic, obstacles, wrap, peace, flying, poison
+- updated devlog on changed game logistics 
+    - new additions: score multiplier, flying mode
+    - modified: poison mode, map size specifications, obstacles
+    - eliminations: boss mode, jumping mode
