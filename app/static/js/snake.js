@@ -406,12 +406,12 @@ var animeSnake = () => {
 
 
     // Loop snake for border wrap mode
-    if (mode == 'wrap') {
+    if (mode == 'wrap' || mode == 'peace') {
         if (head.element[0] < 0) {
-            head.element[0] = 1200-length/2;
+            head.element[0] = 1200 - length / 2;
         }
         if (head.element[1] < 0) {
-            head.element[1] = 600-length/2;
+            head.element[1] = 600 - length / 2;
         }
         if (head.element[0] >= 1200) {
             head.element[0] = 0;
@@ -541,7 +541,11 @@ var hasDied = () => {
     window.alert("Your score is: " + score);
 }
 
+// For flying apples mode
+let appleFlies = false;
+
 var ticker = () => {
+    appleFlies = !appleFlies;
     /* Recursive function for animating snake. I didn't use animation frames because I needed to delay the snake at
     every frame and animation frames can't do that */
     setTimeout(function onTick() {
@@ -571,12 +575,43 @@ var ticker = () => {
         }
         // console.log(elements)
 
+
+        // Adding obstacles for obstacles mode
         if (mode == 'obstacles') {
             drawObstacles();
             if (!addedObstacle) {
                 setObstacle(elements);
             }
         }
+
+
+        mode = 'flying';
+        // Moving apple for flying apples mode
+        if (mode == 'flying') {
+            if (appleFlies) {
+                if (appleX <= 0) appleX += length/2;
+                if (appleX >= 1150) appleX -= length/2;
+                if (appleY <= 0) appleY += length/2;
+                if (appleY >= 550) appleY -= length/2;
+                if (Math.random() >= 0.5) {
+                    if (Math.random() >= 0.5) {
+                        appleX += length / 2;
+                    }
+                    else {
+                        appleX -= length / 2;
+                    }
+                }
+                else {
+                    if (Math.random() >= 0.5) {
+                        appleY += length / 2;
+                    }
+                    else {
+                        appleY -= length / 2;
+                    } 
+                }
+            }
+        }
+
 
         // Check if snake is on an apple. If so, move apple and add to snake and score.
         if (appleX == tail.element[0] && appleY == tail.element[1]) {
@@ -585,21 +620,21 @@ var ticker = () => {
             updateScore()
         }
 
-        // console.log(changeX);
-        // console.log(changeY);
+        /* 
+        in case user gets snake long enough to fill entire map, 
+        then snake resets to inital (score should keep?) (not tested)
+        test:
+        isFill(); 
+        */
 
-        // in case user gets snake long enough to fill entire map, 
-        // then snake resets to inital (score should keep?) (not tested)
-
-        // test:
-        // isFill();
+        // console.log(tail.element[0], tail.element[1])
 
         // Call ticker again for recursive animation. The delay is declared by settings prev *
-
-        console.log(tail.element[0], tail.element[1])
-
-        if (tail.element[0] >= 0 && tail.element[0] < 1200 && tail.element[1] >= 0 && tail.element[1] < 600 && noDuplicates(elements)) {
-            ticker()
+        if (mode == "peace") {
+            ticker();
+        }
+        else if (tail.element[0] >= 0 && tail.element[0] < 1200 && tail.element[1] >= 0 && tail.element[1] < 600 && noDuplicates(elements)) {
+            ticker();
         }
         else {
             console.log("dead");
