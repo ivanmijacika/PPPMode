@@ -406,7 +406,7 @@ var animeSnake = () => {
 
 
     // Loop snake for border wrap mode
-    if (mode == 'wrap') {
+    if (mode == 'wrap' || mode == 'peace') {
         if (head.element[0] < 0) {
             head.element[0] = 1200-length/2;
         }
@@ -597,9 +597,12 @@ var ticker = () => {
         // Call ticker again for recursive animation. The delay is declared by settings prev *
 
         console.log(tail.element[0], tail.element[1])
-
-        if (tail.element[0] >= 0 && tail.element[0] < 1200 && tail.element[1] >= 0 && tail.element[1] < 600 && noDuplicates(elements)) {
-            ticker()
+        
+        if (mode == "peace") {
+            ticker();
+        }
+        else if (tail.element[0] >= 0 && tail.element[0] < 1200 && tail.element[1] >= 0 && tail.element[1] < 600 && noDuplicates(elements)) {
+            ticker();
         }
         else {
             console.log("dead");
