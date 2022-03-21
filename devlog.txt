@@ -166,5 +166,8 @@ noakaiA, qinaL 2022-3-20 17:32
 - Added border wrap mode
 - discobandit and on-death conditional bug fixes
 
-qinaL -- 2022-3-21
+qinaL -- 2022-3-22
 - add get_user_scores() in db.py, shows user's highscores for each mode on home page
+
+qinaL -- 2022-3-22 15:21
+- alteration of None to 0 when getting user's scores moved from init to db.py

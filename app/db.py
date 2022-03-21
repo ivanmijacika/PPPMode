@@ -84,11 +84,16 @@ def get_user_scores(user):
     c.execute("SELECT * FROM scores WHERE usernames = ?", (user,))
     ''' usernames, basic, obstacles, flying, wrap, peace, jump, poison'''
     scores = c.fetchall()
+    # username has row in db, gets it, turns any 'None' into 0
     if scores:
-        scores = scores[0]
+        scores = list(scores[0])
+        for i in range(len(scores)):
+            if scores[i] == None:
+                scores[i] = 0
+    # username does not have row in db yet 
     else: 
-        scores = (user, None, None, None, None, None, None, None)
-    print(scores)
+        scores = [user, 0, 0, 0, 0, 0, 0, 0]
+    # print(scores)
     return scores
 
 # for testing & debugging purposes
@@ -119,4 +124,4 @@ add_score("Tom", 15, "basic")
 get_db()
 '''
 
-get_user_scores("Rob")
+#get_user_scores("Rob")
