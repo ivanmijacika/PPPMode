@@ -216,7 +216,7 @@ let settings = async function () {
             drawCanvas();
             setSnake();
             drawSnake()
-            setApple();
+            setApple([[400, 200], [400 + length / 2, 200], [400 + length, 200], [400 + length * (3 / 2), 200]]);
             drawApple();
             if (mode == 'obstacles') {
                 drawObstacles();
@@ -342,9 +342,17 @@ var apple;
 // initiate obstacle
 var obstacles = [];
 
-var setApple = () => {
+var setApple = (eles) => {
     appleX = apple_coor_x();
     appleY = apple_coor_y();
+
+
+    while (matrixIncludes(eles, [appleX, appleY])) {
+        console.log(matrixIncludes(eles, [appleX, appleY]));
+        appleX = apple_coor_x();
+        appleY = apple_coor_y();
+    }
+
     if (mode == 'poison') {
         apple = new PoisonApple([appleX, appleY], Math.floor(Math.random() * 4));
     }
@@ -487,27 +495,6 @@ function noDuplicates(array) {
         }
     }
     return noDupes;
-}
-
-var moveApple = (eles) => {
-    /* Changes the apples coordinates, not including the snake's */
-    appleX = apple_coor_x();
-    appleY = apple_coor_y();
-
-    console.log(matrixIncludes(eles, [appleX, appleY]));
-    // console.log(eles);
-    // console.log([appleX, appleY]);
-
-    // if the apple spawn on a segment of the snake, respawn it
-    while (matrixIncludes(eles, [appleX, appleY])) {
-        console.log(matrixIncludes(eles, [appleX, appleY]));
-        appleX = apple_coor_x();
-        appleY = apple_coor_y();
-    }
-
-    if (mode == 'poison') {
-        apple = new PoisonApple([appleX, appleY], Math.floor(Math.random() * 4))
-    }
 }
 
 var getScoreIteration = () => {
@@ -701,7 +688,7 @@ var ticker = () => {
         if (appleX == tail.element[0] && appleY == tail.element[1]) {
             snake.insertAt([headPreviousCoords[0], headPreviousCoords[1]], 0);
             updateScore(getScoreIteration(), tailPreviousCoords)
-            moveApple(elements);
+            setApple(elements);
         }
 
         directChanged = false;
