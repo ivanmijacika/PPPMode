@@ -179,11 +179,10 @@ class Apple {
 
 class PoisonApple {
     /* The poisonous apple */
-    constructor(coordinates) {
+    constructor(coordinates, side) {
         this.coordinates = coordinates;
-
         // 0 is the top side, 1 is right, 2 is bottom and 3 is left 
-        this.side = Math.floor(Math.random() * 4);
+        this.side = side;
     }
 }
 
@@ -347,7 +346,7 @@ var setApple = () => {
     appleX = apple_coor_x();
     appleY = apple_coor_y();
     if (mode == 'poison') {
-        apple = new PoisonApple([appleX, appleY]);
+        apple = new PoisonApple([appleX, appleY], Math.floor(Math.random() * 4));
     }
     else {
         apple = new Apple([appleX, appleY]);
@@ -357,22 +356,32 @@ var setApple = () => {
 var drawApple = () => {
     if (mode == 'poison') {
         if (apple.side == 0) {
+            // console.log('0 apple side')
             ctx.fillStyle = '#9f9f9f';
             ctx.fillRect(appleX + 1, appleY + 1 + length / 8, length / 2 - 2, length / 2 - 2 - length / 8);
-            ctx.fillStyle = 'cc3939';
-            ctx.fillRect(appleX + length / 2, appleY + length / 2, length / 8, length / 8);
+            ctx.fillStyle = 'rgba(204, 57, 57, 1)';
+            ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 2, length / 8 - 2);
         }
         if (apple.side == 1) {
+            // console.log('1 apple side')
             ctx.fillStyle = '#9f9f9f';
             ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 13, length / 2 - 2);
+            ctx.fillStyle = 'rgba(204, 57, 57, 1)';
+            ctx.fillRect(appleX + 2 + 3 * length / 8, appleY + 1, length / 8 - 2, length / 2 - 3);
         }
         if (apple.side == 2) {
+            // console.log('2 apple side')
             ctx.fillStyle = '#9f9f9f';
             ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 2, length / 2 - 13);
+            ctx.fillStyle = 'rgba(204, 57, 57, 1)';
+            ctx.fillRect(appleX + 1, appleY + 3 * length / 8 + 2, length / 2 - 2, length / 8 - 3);
         }
         if (apple.side == 3) {
+            // console.log('3 apple side')
             ctx.fillStyle = '#9f9f9f';
             ctx.fillRect(appleX + 12, appleY + 1, length / 2 - 13, length / 2 - 2);
+            ctx.fillStyle = 'rgba(204, 57, 57, 1)';
+            ctx.fillRect(appleX + 1, appleY + 1, length / 8 - 2, length / 2 - 2);
         }
     }
     else {
@@ -497,22 +506,55 @@ var moveApple = (eles) => {
     }
 
     if (mode == 'poison') {
-        apple = new PoisonApple([appleX, appleY])
+        apple = new PoisonApple([appleX, appleY], Math.floor(Math.random() * 4))
     }
 }
 
-var updateScore = () => {
+var getScoreIteration = () => {
     if (speed == 'slow') {
-        score += 0.5;
+        return 0.5;
     }
     else if (speed == 'medium') {
-        score += 1;
+        return 1;
     }
     else if (speed == 'fast') {
-        score += 1.5;
+        return 1.5;
     }
     else if (speed == 'insane') {
-        score += 2;
+        return 2;
+    }
+}
+
+var updateScore = (scoreIteration, tailPreviousCoords) => {
+    console.log(apple.side)
+    if (mode == 'poison') {
+        if (apple.side == 0) {
+            if (changeY > 0) {
+                score += 2 * scoreIteration;
+            }
+            else score -= scoreIteration;
+        }
+        else if (apple.side == 1) {
+            if (changeX < 0) {
+                score += 2 * scoreIteration;
+            }
+            else score -= scoreIteration;
+        }
+        else if (apple.side == 2) {
+            if (changeY < 0) {
+                score += 2 * scoreIteration;
+            }
+            else score -= scoreIteration;
+        }
+        else if (apple.side == 3) {
+            if (changeX > 0) {
+                score += 2 * scoreIteration;
+            }
+            else score -= scoreIteration;
+        }
+    }
+    else {
+        score += scoreIteration;
     }
 
     if (score % 4 == 0 || Math.round(score) % 4 == 0 || Math.floor(score) % 4 == 0) {
@@ -581,14 +623,22 @@ var hasDied = () => {
 let appleFlies = false;
 
 var ticker = () => {
-    appleFlies = !appleFlies;
     /* Recursive function for animating snake. I didn't use animation frames because I needed to delay the snake at
     every frame and animation frames can't do that */
     setTimeout(function onTick() {
-        directChanged = false;
+        appleFlies = !appleFlies;
 
         // For apple eating contingencies
-        headPreviousCoords = snake.head.element;
+        let headPreviousCoords = snake.head.element;
+        let tailPreviousCoords;
+        if (mode == 'poison') {
+            let tailPrev = snake.head;
+            while (tailPrev.next != null) {
+                tailPrev = tailPrev.next;
+            }
+
+            tailPreviousCoords = tailPrev.element;
+        }
 
         clear(c);
         drawCanvas();
@@ -649,10 +699,13 @@ var ticker = () => {
 
         // Check if snake is on an apple. If so, move apple and add to snake and score.
         if (appleX == tail.element[0] && appleY == tail.element[1]) {
-            moveApple(elements);
             snake.insertAt([headPreviousCoords[0], headPreviousCoords[1]], 0);
-            updateScore()
+            updateScore(getScoreIteration(), tailPreviousCoords)
+            moveApple(elements);
         }
+
+        directChanged = false;
+
 
         /* 
         in case user gets snake long enough to fill entire map, 
