@@ -49,11 +49,13 @@
 
     <div class="container">
         {% if session['username'] %}
-        <h5 class="fw-normal">Basic Highscore: {{basic}} </h5>
-        <h5 class="fw-normal">Obstacle Highscore: {{obstacle}} </h5>
-        <h5 class="fw-normal">Border Wrap Highscore: {{wrap}} </h5>
-        <h5 class="fw-normal">Flying Highscore: {{flying}} </h5>
-        <h5 class="fw-normal">Poison Highscore: {{poison}} </h5>
+        <h5 class="fw-normal alert alert-info w-25">Basic Highscore: {{basic}} </h5>
+        <h5 class="fw-normal alert alert-info w-25">Obstacle Highscore: {{obstacle}} </h5>
+        <h5 class="fw-normal alert alert-info w-25">Border Wrap Highscore: {{wrap}} </h5>
+        <h5 class="fw-normal alert alert-info w-25">Flying Highscore: {{flying}} </h5>
+        <h5 class="fw-normal alert alert-info w-25">Poison Highscore: {{poison}} </h5>
+        {% else %}
+        <h5 class="fw-normal alert alert-warning w-25">Login to save your scores! </h5>
         {% endif %}
     </div>
 
