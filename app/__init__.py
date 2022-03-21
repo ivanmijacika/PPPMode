@@ -15,6 +15,15 @@ app.secret_key = urandom(32) #create random key
 @app.route('/home')
 def home():
     ''' Loads the landing page '''
+    if 'username' in session: 
+        ''' usernames, basic, obstacles, flying, wrap, peace, jump, poison'''
+        ''' <h4>Basic: {{basic}} </h4>
+                    <h4>Obstacle: {{obstacle}} </h4>
+                    <h4>Border Wrap: {{wrap}} </h4>
+                    <h4>Peace: {{peace}} </h4>
+                    <h4>Flying: {{flying}} </h4>'''
+        scores = get_user_scores(session['username'])
+        return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[4], peace = scores[5], flying= scores[3], poison= scores[7])
     return render_template("home.html")
 
 def set_settings():

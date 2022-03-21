@@ -77,6 +77,20 @@ def top_n(n, mode):
 
     return(n_scores, n_users)
 
+def get_user_scores(user): 
+    db = sqlite3.connect(DB_file)
+    c = db.cursor()
+
+    c.execute("SELECT * FROM scores WHERE usernames = ?", (user,))
+    ''' usernames, basic, obstacles, flying, wrap, peace, jump, poison'''
+    scores = c.fetchall()
+    if scores:
+        scores = scores[0]
+    else: 
+        scores = (user, None, None, None, None, None, None, None)
+    print(scores)
+    return scores
+
 # for testing & debugging purposes
 def get_db():
     db = sqlite3.connect(DB_file)
@@ -104,3 +118,5 @@ print(top_n(3, "jump"))
 add_score("Tom", 15, "basic")
 get_db()
 '''
+
+get_user_scores("Rob")

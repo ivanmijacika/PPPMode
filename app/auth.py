@@ -15,7 +15,7 @@ def create_db():
     c = db.cursor()
 
     c.execute("CREATE TABLE IF NOT EXISTS users (usernames TEXT, passwords TEXT);")
-    c.execute("CREATE TABLE IF NOT EXISTS scores (usernames TEXT, highscore_basic INTEGER, highscore_obstacles INTEGER, highscore_bosses INTEGER, highscore_wrap INTEGER, highscore_peace INTEGER, highscore_jump INTEGER, highscore_poison INTEGER);")
+    c.execute("CREATE TABLE IF NOT EXISTS scores (usernames TEXT, highscore_basic INTEGER, highscore_obstacles INTEGER, highscore_flying INTEGER, highscore_wrap INTEGER, highscore_peace INTEGER, highscore_jump INTEGER, highscore_poison INTEGER);")
     db.close()
 
 

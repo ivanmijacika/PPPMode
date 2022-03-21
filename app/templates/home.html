@@ -21,6 +21,13 @@
                 {% if session['username'] %}
                 <h5 class="fw-light ms-1" style="display:inline-block;">| current user:
                     {{session['username']}}</h5>
+
+                    <h5>Basic Highscore: {{basic}} </h5>
+                    <h5>Obstacle Highscore: {{obstacle}} </h5>
+                    <h5>Border Wrap Highscore: {{wrap}} </h5>
+                    <h5>Peace Highscore: {{peace}} </h5>
+                    <h5>Flying Highscore: {{flying}} </h5>
+                    <h5>Poison Highscore: {{poison}} </h5>
                 {% else %}
                 <h5 class="fw-light ms-1 text-white" style="display:inline-block;">.</h5>
                 {% endif %}
