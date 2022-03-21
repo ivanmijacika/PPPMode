@@ -539,6 +539,10 @@ var updateScore = (scoreIteration, tailPreviousCoords) => {
             }
             else score -= scoreIteration;
         }
+        // keep scores from negative
+        if (score < 0){
+            score = 0;
+        }
     }
     else {
         score += scoreIteration;

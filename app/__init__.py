@@ -24,6 +24,13 @@ def home():
                     <h4>Flying: {{flying}} </h4>
                     <h4>Flying: {{flying}} </h4>'''
         scores = list(get_user_scores(session['username']))
+        '''
+        for i in range(len(scores))[1:]:
+            if scores[i] == None:
+                scores[i] = 0
+            elif scores[i] < 0:
+                scores[i] = 0
+        '''
         return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[4], peace = scores[5], flying= scores[3], poison= scores[7])
     return render_template("home.html")
 
