@@ -47,6 +47,9 @@ ivanM -- 2022-3-10 09:26
 noakaiA -- 2022-3-10 09:21
 - began snake game. Made a... board? It's not a checkerboard but it is something.
 
+justinM -- 2022-3-11 09:25
+- began work on highscore database functions, still some bugs
+
 noakaiA -- 2022-3-11 09:27
 - Finished board. It's a checkerboard!
 
