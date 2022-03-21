@@ -22,11 +22,12 @@ def home():
                     <h4>Border Wrap: {{wrap}} </h4>
                     <h4>Peace: {{peace}} </h4>
                     <h4>Flying: {{flying}} </h4>'''
+
+        # Change None scores to 0 for visual purposes
         scores = list(get_user_scores(session['username']))
         for i in range(len(scores)):
             if scores[i] == None:
                 scores[i] = 0
-            
 
         return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[4], peace = scores[5], flying= scores[3], poison= scores[7])
     return render_template("home.html")
