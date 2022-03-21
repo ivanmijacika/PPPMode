@@ -12,14 +12,13 @@
 {% block body %}
 
 <body class="text-center">
-
-	<div class="container mt-3 rounded">
+	<div class="container mt-5 mb-3 rounded">
 		<div class="row row-cols-auto">
 			<div class="col my-auto">
-				<h1 class="fw-light display-4 ms-5" id="title" style="display:inline-block">Snake++</h1>
+				<h1 class="fw-light display-4" id="title" style="display:inline-block; margin-right:5px">Snake++</h1>
 				<br>
 				{% if session['username'] %}
-				<h5 class="fw-light">| current
+				<h5 class="fw-light text-start ms-1">| current
 					user: {{session['username']}}</h5>
 				{% else %}
 				<h5 class="fw-light ms-1 text-white" style="display:inline-block;">.</h5>
