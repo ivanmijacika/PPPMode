@@ -584,8 +584,6 @@ var ticker = () => {
             }
         }
 
-
-        mode = 'flying';
         // Moving apple for flying apples mode
         if (mode == 'flying') {
             if (appleFlies) {
