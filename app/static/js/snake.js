@@ -541,7 +541,11 @@ var hasDied = () => {
     window.alert("Your score is: " + score);
 }
 
+// For flying apples mode
+let appleFlies = false;
+
 var ticker = () => {
+    appleFlies = !appleFlies;
     /* Recursive function for animating snake. I didn't use animation frames because I needed to delay the snake at
     every frame and animation frames can't do that */
     setTimeout(function onTick() {
@@ -580,10 +584,31 @@ var ticker = () => {
             }
         }
 
+
+        mode = 'flying';
         // Moving apple for flying apples mode
         if (mode == 'flying') {
-            if (Math.random() >= 0.5) {
-                moveApple(elements);
+            if (appleFlies) {
+                if (appleX <= 0) appleX += length/2;
+                if (appleX >= 1150) appleX -= length/2;
+                if (appleY <= 0) appleY += length/2;
+                if (appleY >= 550) appleY -= length/2;
+                if (Math.random() >= 0.5) {
+                    if (Math.random() >= 0.5) {
+                        appleX += length / 2;
+                    }
+                    else {
+                        appleX -= length / 2;
+                    }
+                }
+                else {
+                    if (Math.random() >= 0.5) {
+                        appleY += length / 2;
+                    }
+                    else {
+                        appleY -= length / 2;
+                    } 
+                }
             }
         }
 
