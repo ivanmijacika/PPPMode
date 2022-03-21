@@ -177,6 +177,16 @@ class Apple {
     }
 }
 
+class PoisonApple {
+    /* The poisonous apple */
+    constructor(coordinates) {
+        this.coordinates = coordinates;
+
+        // 0 is the top side, 1 is right, 2 is bottom and 3 is left 
+        this.side = Math.floor(Math.random() * 4);
+    }
+}
+
 class Obstacle {
     /* The obstacle */
     constructor(coordinates) {
@@ -336,12 +346,39 @@ var obstacles = [];
 var setApple = () => {
     appleX = apple_coor_x();
     appleY = apple_coor_y();
-    apple = new Apple([appleX, appleY])
+    if (mode == 'poison') {
+        apple = new PoisonApple([appleX, appleY]);
+    }
+    else {
+        apple = new Apple([appleX, appleY]);
+    }
 }
 
 var drawApple = () => {
-    ctx.fillStyle = '#cc3939';
-    ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 2, length / 2 - 2);
+    if (mode == 'poison') {
+        if (apple.side == 0) {
+            ctx.fillStyle = '#9f9f9f';
+            ctx.fillRect(appleX + 1, appleY + 1 + length / 8, length / 2 - 2, length / 2 - 2 - length / 8);
+            ctx.fillStyle = 'cc3939';
+            ctx.fillRect(appleX + length / 2, appleY + length / 2, length / 8, length / 8);
+        }
+        if (apple.side == 1) {
+            ctx.fillStyle = '#9f9f9f';
+            ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 13, length / 2 - 2);
+        }
+        if (apple.side == 2) {
+            ctx.fillStyle = '#9f9f9f';
+            ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 2, length / 2 - 13);
+        }
+        if (apple.side == 3) {
+            ctx.fillStyle = '#9f9f9f';
+            ctx.fillRect(appleX + 12, appleY + 1, length / 2 - 13, length / 2 - 2);
+        }
+    }
+    else {
+        ctx.fillStyle = '#cc3939';
+        ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 2, length / 2 - 2);
+    }
 }
 
 var setObstacle = (eles) => {
@@ -360,11 +397,6 @@ var setObstacle = (eles) => {
     }
     obstacle = new Obstacle([obstacleX, obstacleY])
     obstacles.push(obstacle);
-}
-
-var drawApple = () => {
-    ctx.fillStyle = '#cc3939';
-    ctx.fillRect(appleX + 1, appleY + 1, length / 2 - 2, length / 2 - 2);
 }
 
 var drawObstacles = () => {
@@ -462,6 +494,10 @@ var moveApple = (eles) => {
         console.log(matrixIncludes(eles, [appleX, appleY]));
         appleX = apple_coor_x();
         appleY = apple_coor_y();
+    }
+
+    if (mode == 'poison') {
+        apple = new PoisonApple([appleX, appleY])
     }
 }
 
@@ -587,10 +623,10 @@ var ticker = () => {
         // Moving apple for flying apples mode
         if (mode == 'flying') {
             if (appleFlies) {
-                if (appleX <= 0) appleX += length/2;
-                if (appleX >= 1150) appleX -= length/2;
-                if (appleY <= 0) appleY += length/2;
-                if (appleY >= 550) appleY -= length/2;
+                if (appleX <= 0) appleX += length / 2;
+                if (appleX >= 1150) appleX -= length / 2;
+                if (appleY <= 0) appleY += length / 2;
+                if (appleY >= 550) appleY -= length / 2;
                 if (Math.random() >= 0.5) {
                     if (Math.random() >= 0.5) {
                         appleX += length / 2;
@@ -605,7 +641,7 @@ var ticker = () => {
                     }
                     else {
                         appleY -= length / 2;
-                    } 
+                    }
                 }
             }
         }
