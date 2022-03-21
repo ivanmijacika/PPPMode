@@ -14,25 +14,25 @@
 <body class="text-center">
 
 	<div class="container mt-3 rounded">
-			<div class="row row-cols-auto">
-					<div class="col my-auto">
-							<h1 class="fw-light display-4 ms-5" id="title" style="display:inline-block">Snake++</h1>
-							<br>
-							{% if session['username'] %}
-									<h5 class="fw-light">| current
-									user: {{session['username']}}</h5>
-							{% else %}
-									<h5 class="fw-light ms-1 text-white" style="display:inline-block;">.</h5>
-							{% endif %}
-					</div>
-					<div class="col">
-							<div class="container my-2 mt-4">
-									<form action="/discover" method='GET'>
-											<button type="submit" class="btn btn-info" formaction="/home">Back Home</button>
-									</form>
-							</div>
-					</div>
+		<div class="row row-cols-auto">
+			<div class="col my-auto">
+				<h1 class="fw-light display-4 ms-5" id="title" style="display:inline-block">Snake++</h1>
+				<br>
+				{% if session['username'] %}
+				<h5 class="fw-light">| current
+					user: {{session['username']}}</h5>
+				{% else %}
+				<h5 class="fw-light ms-1 text-white" style="display:inline-block;">.</h5>
+				{% endif %}
 			</div>
+			<div class="col">
+				<div class="container my-2 mt-4">
+					<form action="/discover" method='GET'>
+						<button type="submit" class="btn btn-info" formaction="/home">Back Home</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="container mt-5">
@@ -41,59 +41,61 @@
 	<br>
 	<label for="modes">Mode:</label>
 	<form action="/leaderboard">
-	<select name="modes" id="modes">
-		<option value="basic">Basic</option>
-		<option value="obstacles">Obstacles</option>
-		<option value="wrap">Border Wrap</option>
-		<option value="peace">Peace</option>
-		<option value="jump">Jumping</option>
-		<option value="flying">Bosses</option>
-		<option value="poison">Poison Apples</option>
-	</select> 
+		<select name="modes" id="modes">
+			<option value="basic">Basic</option>
+			<option value="obstacles">Obstacles</option>
+			<option value="wrap">Border Wrap</option>
+			<option value="peace">Peace</option>
+			<option value="jump">Jumping</option>
+			<option value="flying">Bosses</option>
+			<option value="poison">Poison Apples</option>
+		</select>
 	</form>
 
-	<div class="container w-35"> <!--play around with sizes-->
+	<div class="container w-35">
+		<!--play around with sizes-->
 
-			<table class="table" id="table">
-			  		<thead>
-			    			<tr>
-			      				<th scope="col">#</th>
-			      				<th scope="col">Username</th>
-			      				<th scope="col">Score</th>
-			    			</tr>
-			  		</thead>
-			  		<tbody>
-			    			<tr class="table-warning">
-			      				<th scope="row">1</th>
-			      				<td>{{user0}}</td>
-			      				<td>{{score0}}</td>  <!--NEED TO MAKE THIS A TEMPLATE SOON-->
-			    			</tr>
-					    	<tr class="table-secondary">
-					      		<th scope="row">2</th>
-					      		<td>{{user1}}</td>
-					      		<td>{{score1}}</td>
-					    	</tr>
-					    	<tr style="background: #c9a08f">
-					      		<th scope="row">3</th>
-					      		<td>{{user2}}</td>
-					      		<td>{{score2}}</td>
-					    	</tr>
-					    	<tr>
-					      		<th scope="row">4</th>
-					      		<td>{{user3}}</td>
-					      		<td>{{score3}}</td>
-					    	</tr>
-					    	<tr>
-					      		<th scope="row">5</th>
-					      		<td>{{user4}}</td>
-			      				<td>{{score4}}</td>
-		    				</tr>
-		  			</tbody>
-				</table>
+		<table class="table" id="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Username</th>
+					<th scope="col">Score</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="table-warning">
+					<th scope="row">1</th>
+					<td>{{user0}}</td>
+					<td>{{score0}}</td>
+					<!--NEED TO MAKE THIS A TEMPLATE SOON-->
+				</tr>
+				<tr class="table-secondary">
+					<th scope="row">2</th>
+					<td>{{user1}}</td>
+					<td>{{score1}}</td>
+				</tr>
+				<tr style="background: #c9a08f">
+					<th scope="row">3</th>
+					<td>{{user2}}</td>
+					<td>{{score2}}</td>
+				</tr>
+				<tr>
+					<th scope="row">4</th>
+					<td>{{user3}}</td>
+					<td>{{score3}}</td>
+				</tr>
+				<tr>
+					<th scope="row">5</th>
+					<td>{{user4}}</td>
+					<td>{{score4}}</td>
+				</tr>
+			</tbody>
+		</table>
 
-		</div>
-		
-		<script src= "../static/js/leaderboard.js"></script>
+	</div>
+
+	<script src="../static/js/leaderboard.js"></script>
 
 
 </body>
