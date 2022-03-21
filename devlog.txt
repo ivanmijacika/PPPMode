@@ -101,7 +101,7 @@ qinaL -- 2020-3-16 17:11
 - combined top_n_scores and top_n_users into one function --> top_n; top_n returns a tuple of 2 lists
 - NOTE: leaderboard is only a board for basic mode
 
-noakaiA 2022-3-16 20:32
+noakaiA -- 2022-3-16 20:32
 - Added apples and growing. The game is finally pretty much done.
 
 qinaL -- 2020-3-16 22:16
@@ -110,7 +110,7 @@ qinaL -- 2020-3-16 22:16
     - leaderboard.js was made to do js in leaderboard page; new function in init, leaderboard_data, used to send data to leaderboard.js
     - currently a scores and users array is able to be printed in console
 
-noakaiA 2022-3-17 09:17
+noakaiA -- 2022-3-17 09:17
 - Fixed some major bugs. The snake does not randomly die when you get an apple, the apples cannot spawn within the snake and the mechanism
 for spawning apples was streamlines so as to not include recursion.
 
@@ -132,7 +132,7 @@ qinaL -- 2022-3-18 09:00
 - added all the other modes into leaderboard dropdown 
 - added test cases into db to test leaderboard, everything is okay so far
 
-noakaiA 2022-3-18 09:24
+noakaiA -- 2022-3-18 09:24
 - Tried to get score into python. Qina tried to explain it to me. I kinda get it, but it would probably be faster if I stuck to the visual js side of things.
 
 qinaL -- 2022-3-19 15:15
@@ -156,15 +156,24 @@ qinaL -- 2022-3-19 20:06
 - issue found: in small map, when snake gets longer, the mechanism for spawning new apple fails and game bugs out
 - added a isFill() for in case snake gets long enough to fill entire map, then snake resets; NOT TESTED
 
-noakaiA, qinaL 2022-3-20 14:23
+noakaiA, qinaL -- 2022-3-20 14:23
 - Fixed everything
     - Specifically, everything that Qina destroyed over the weekend, which was most things
 - Added obstacles mode
     - Had to figure out the hard way that walls and apples are a bit different
 
-noakaiA, qinaL 2022-3-20 17:32
+noakaiA, qinaL -- 2022-3-20 17:32
 - Added border wrap mode
 - discobandit and on-death conditional bug fixes
 
 qinaL -- 2022-3-21
 - add get_user_scores() in db.py, shows user's highscores for each mode on home page
+
+noakaiA -- 2022-3-21 09:23
+- Added Peace mode
+- Added flying apples mode
+
+noakaiA -- 2022-3-21 15:23
+- Finally finished poison mode without bugs
+    - Can't have negative highscores anymore
+    - Poison apples are the same size on other map sizes
