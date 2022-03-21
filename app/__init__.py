@@ -25,8 +25,10 @@ def home():
 
         # Change None scores to 0 for visual purposes
         scores = list(get_user_scores(session['username']))
-        for i in range(len(scores)):
+        for i in range(len(scores))[1:]:
             if scores[i] == None:
+                scores[i] = 0
+            elif scores[i] < 0:
                 scores[i] = 0
 
         return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[4], peace = scores[5], flying= scores[3], poison= scores[7])
