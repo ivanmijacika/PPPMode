@@ -198,3 +198,7 @@ noakaiA -- 2022-3-22 10:32
 - Fixed obstacles bug where obstacle can spawn on apple
     - Fixed the resulting bug where flying apples killed you
 - Speed changes: made everything except insane faster
+
+noakaiA -- 2022-3-22 13:08
+- Fixed obstacles bug where you go through obstacle without dying immidiatly
+    - Had to re-fix obstacles spawning on apples
