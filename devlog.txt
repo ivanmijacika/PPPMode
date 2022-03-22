@@ -202,3 +202,4 @@ noakaiA -- 2022-3-22 10:32
 noakaiA -- 2022-3-22 13:08
 - Fixed obstacles bug where you go through obstacle without dying immidiatly
     - Had to re-fix obstacles spawning on apples
+- Changed the message you get when you win from the one you get when you die
