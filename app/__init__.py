@@ -31,7 +31,7 @@ def home():
             elif scores[i] < 0:
                 scores[i] = 0
         '''
-        return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[3], flying= scores[5], poison= scores[6], mode=session['mode'])
+        return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[3], flying= scores[5], poison= scores[6])
     return render_template("home.html")
 
 def set_settings():
@@ -64,7 +64,8 @@ def play():
         print(session['size'])
         print(session['mode'])
 
-    return render_template("play.html")
+
+    return render_template("play.html", mode=session['mode'].capitalize())
     
 @app.route('/login')
 def login():
