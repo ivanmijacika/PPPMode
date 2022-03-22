@@ -613,26 +613,27 @@ var add_score = () => {
         })
 }
 
-var isFill = () => {
-    let total;
-    if (size === "small") {
-        total = 72; // 12 * 6
+var isFill = (elems) => {
+    if (size === "small" && elems.length >= 72) {
+        return true;
     }
-    else if (size === "mediium") {
-        total = 288; // 24 * 12
+    else if (size === "medium" && elems.length >= 288) {
+        return true;
     }
-    else {
-        total = 1, 152 // 48 * 24
+    else if (size === 'large' && elems.length >= 1152) {
+        return true;
     }
-    if (snake.size >= total) {
-        snake = new LinkedList();
-        setSnake();
-    }
+    return false;
 }
 
 var hasDied = () => {
     add_score();
     window.alert("Your score is: " + score);
+}
+
+var hasWon = () => {
+    add_score();
+    window.alert("Your won! You have achieved the maximum score for this speed, mode and map: " + score);
 }
 
 // For flying apples mode
@@ -714,12 +715,8 @@ var ticker = () => {
         directChanged = false;
 
 
-        /* 
-        in case user gets snake long enough to fill entire map, 
-        then snake resets to inital (score should keep?) (not tested)
-        test:
-        isFill(); 
-        */
+        // in case user gets snake long enough to fill entire map, show different death screen;
+
 
         // console.log(tail.element[0], tail.element[1])
 
@@ -730,6 +727,10 @@ var ticker = () => {
         }
         else if (tail.element[0] >= 0 && tail.element[0] < 1200 && tail.element[1] >= 0 && tail.element[1] < 600 && noDuplicates(elements)) {
             ticker();
+        }
+        else if (isFill(elements)) {
+            console.log("kule");
+            hasDied();
         }
         else {
             console.log("dead");
