@@ -166,19 +166,19 @@ noakaiA, qinaL -- 2022-3-20 17:32
 - Added border wrap mode
 - discobandit and on-death conditional bug fixes
 
-qinaL -- 2022-3-22 9:30
-- add get_user_scores() in db.py, shows user's highscores for each mode on home page
-
 noakaiA -- 2022-3-21 09:23
 - Added Peace mode
 - Added flying apples mode
+
+qinaL -- 2022-3-21 09:30
+- add get_user_scores() in db.py, shows user's highscores for each mode on home page
 
 noakaiA -- 2022-3-21 15:23
 - Finally finished poison mode without bugs
     - Can't have negative highscores anymore
     - Poison apples are the same size on other map sizes
 
-qinaL -- 2022-3-22 19:14
+qinaL -- 2022-3-21 19:14
 - alteration of None to 0 when getting user's scores moved from init to db.py, catch for negative scores is in snake.js for poison instead of init
 - updated db columns + leaderboard options with our new modes, got rid of old ones; made the order on which modes is shown in db, home, and leaderboard consistent
     - order is as follows: basic, obstacles, wrap, peace, flying, poison
@@ -187,8 +187,14 @@ qinaL -- 2022-3-22 19:14
     - modified: poison mode, map size specifications, obstacles
     - eliminations: boss mode, jumping mode
 
-noakaiA -- 2022-3-22 20:29
+noakaiA -- 2022-3-21 20:29
 - html changes
     - Formatting changes for consistency on Leaderboards and Settings pages 
     - Usability changes on Play! page
     - Put some things into alerts/containers
+
+    
+noakaiA -- 2022-3-22 10:32
+- Fixed obstacles bug where obstacle can spawn on apple
+    - Fixed the resulting bug where flying apples killed you
+- Speed changes: made everything except insane faster
