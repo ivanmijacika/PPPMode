@@ -31,7 +31,7 @@ def home():
             elif scores[i] < 0:
                 scores[i] = 0
         '''
-        return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[3], peace = scores[4], flying= scores[5], poison= scores[6])
+        return render_template("home.html", basic = scores[1], obstacle = scores[2], wrap = scores[3], flying= scores[5], poison= scores[6])
     return render_template("home.html")
 
 def set_settings():
