@@ -412,6 +412,7 @@ var setObstacle = (eles) => {
 
     console.log(matrixIncludes(eles, [obstacleX, obstacleY]));
 
+    eles.push([appleX, appleY]);
     while (matrixIncludes(eles, [obstacleX, obstacleY])) {
         obstacleX = obstacle_coor_x();
         obstacleY = obstacle_coor_y();
@@ -492,10 +493,12 @@ function noDuplicates(array) {
     /* function for checking duplicates in an array in js. Used for snake contact with itself */
     noDupes = true
 
-    for (var i = 1; i < array.length; i++) {
-        if (equals(array[0], array[i])) {
-            noDupes = false;
-            break;
+    for (var i = 0; i < array.length-1; i++) {
+        for (var j = i+1; j < array.length; j++) {
+            if (equals(array[i], array[j])) {
+                noDupes = false;
+                break;
+            }
         }
     }
     return noDupes;
@@ -666,11 +669,6 @@ var ticker = () => {
             elements.push([obstacles[i].coordinates[0], obstacles[i].coordinates[1]]);
         }
 
-        if (mode == 'obstacles') {
-            elements.push([appleX, appleY]);
-        }
-        // console.log(elements)
-
 
         // Adding obstacles for obstacles mode
         if (mode == 'obstacles') {
@@ -726,6 +724,7 @@ var ticker = () => {
         // console.log(tail.element[0], tail.element[1])
 
         // Call ticker again for recursive animation. The delay is declared by settings prev *
+        console.log(elements);
         if (mode == "peace") {
             ticker();
         }
