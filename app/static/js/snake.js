@@ -225,13 +225,13 @@ let settings = async function () {
 }
 settings();
 
-var delay = 200;
+var delay = 180;
 
 var setSpeed = (speed) => {
-    if (speed == "slow") delay = 280;
-    else if (speed == "fast") delay = 120;
+    if (speed == "slow") delay = 240;
+    else if (speed == "fast") delay = 110;
     else if (speed == "insane") delay = 60;
-    else delay = 200;
+    else delay = 180;
 }
 
 // length is how big each square is, more length = bigger square = smaller board
