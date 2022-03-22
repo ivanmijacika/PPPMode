@@ -665,6 +665,7 @@ var ticker = () => {
         for (var i = 0; i < obstacles.length; i++) {
             elements.push([obstacles[i].coordinates[0], obstacles[i].coordinates[1]]);
         }
+        elements.push([appleX, appleY]);
         // console.log(elements)
 
 
