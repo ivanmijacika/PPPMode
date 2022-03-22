@@ -348,7 +348,7 @@ var setApple = (eles) => {
     appleSide = Math.floor(Math.random() * 4);
 
     if (mode == 'poison') {
-        while (matrixIncludes(eles, [appleX, appleY]) || (appleSide == 0 && appleY == 0) || (appleSide == 1 && appleX == 1200-length/2) || (appleSide == 2 && appleY == 600-length/2) || (appleSide == 3 && appleX == 0)) {
+        while (matrixIncludes(eles, [appleX, appleY]) || (appleSide == 0 && appleY == 0) || (appleSide == 1 && appleX == 1200 - length / 2) || (appleSide == 2 && appleY == 600 - length / 2) || (appleSide == 3 && appleX == 0)) {
             console.log(matrixIncludes(eles, [appleX, appleY]));
             appleX = apple_coor_x();
             appleY = apple_coor_y();
@@ -561,7 +561,7 @@ var updateScore = (scoreIteration) => {
             }
         }
         // keep scores from negative
-        if (score < 0){
+        if (score < 0) {
             score = 0;
         }
     }
@@ -665,7 +665,10 @@ var ticker = () => {
         for (var i = 0; i < obstacles.length; i++) {
             elements.push([obstacles[i].coordinates[0], obstacles[i].coordinates[1]]);
         }
-        elements.push([appleX, appleY]);
+
+        if (mode == 'obstacles') {
+            elements.push([appleX, appleY]);
+        }
         // console.log(elements)
 
 
