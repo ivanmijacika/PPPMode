@@ -13,9 +13,9 @@ Come play Snake++, the classic snake game with innovative new modes, like obstac
 - Install virtual environment <br>
 $ ```python3 -m venv ~/snakenv``` <br>
 Linux: $ ```source ~/snakenv/bin/activate``` <br>
-Windows: $ ```source ~/hamster/Scripts/activate```  <br><br>
+Windows: $ ```source ~/snakenv/Scripts/activate```  <br><br>
 - Clone the Repository <br>
-(hamster)$ ```git clone https://github.com/ivanmijacika/PPPMode.git``` <br><br>
+(snakenv)$ ```git clone https://github.com/ivanmijacika/PPPMode.git``` <br><br>
 - Install Dependencies <br>
 (snakenv)$ ```cd PPPMode ``` <br>
 (snakenv)$ ```pip install -r requirements.txt``` <br><br> 
