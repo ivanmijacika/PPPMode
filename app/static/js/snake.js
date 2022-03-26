@@ -493,8 +493,8 @@ function noDuplicates(array) {
     /* function for checking duplicates in an array in js. Used for snake contact with itself */
     noDupes = true
 
-    for (var i = 0; i < array.length-1; i++) {
-        for (var j = i+1; j < array.length; j++) {
+    for (var i = 0; i < array.length - 1; i++) {
+        for (var j = i + 1; j < array.length; j++) {
             if (equals(array[i], array[j])) {
                 noDupes = false;
                 break;
@@ -573,7 +573,12 @@ var updateScore = (scoreIteration) => {
         addSnake()
     }
 
-    if (score % 4 == 0 || Math.round(score) % 4 == 0 || Math.floor(score) % 4 == 0) {
+    if (speed == 'fast') {
+        if (score % 4 == 0 || Math.round(score) % 4 == 0 || Math.floor(score) % 4 == 0) {
+            addedObstacle = false;
+        }
+    }
+    else if (score % 4 == 0) {
         addedObstacle = false;
     }
 
@@ -721,7 +726,7 @@ var ticker = () => {
         // console.log(tail.element[0], tail.element[1])
 
         // Call ticker again for recursive animation. The delay is declared by settings prev *
-        console.log(elements);
+        // console.log(elements);
         if (mode == "peace") {
             ticker();
         }
