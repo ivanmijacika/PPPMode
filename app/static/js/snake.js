@@ -735,7 +735,7 @@ var ticker = () => {
         }
         else if (isFill(elements)) {
             console.log("kule");
-            hasDied();
+            hasWon();
         }
         else {
             console.log("dead");
