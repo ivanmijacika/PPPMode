@@ -638,7 +638,7 @@ var hasDied = () => {
 
 var hasWon = () => {
     add_score();
-    window.alert("Your won! You have achieved the maximum score for this speed, mode and map: " + score);
+    window.alert("Your won! You have achieved the maximum size for this mode and map: " + score);
 }
 
 // For flying apples mode
